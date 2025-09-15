@@ -18,6 +18,11 @@ export class PenTool {
      */
     handleMouseDown(e) {
         this.isDrawing = true
+
+        const { offsetX, offsetY } = e
+        // Lift the pen
+        this.canvasContext.beginPath()
+        this.canvasContext.moveTo(offsetX, offsetY)
         console.log('Pen clicked down')
     }
 
@@ -34,9 +39,13 @@ handleMouseMove(e) {
      * Handles mouse up event to stop drawing.
      */
     handleMouseUp() {
-        this.isDrawing = false
-        console.log('Pen up')
-
+        if (this.isDrawing) {
+            this.isDrawing = false
+            
+            // Start fresh so that the next dwaring doesn't connect
+            this.canvasContext.beginPath()
+            console.log('Pen up')
+        }
     }
 
     /**
@@ -44,10 +53,16 @@ handleMouseMove(e) {
      * @param {MouseEvent} e
      */
     draw(e) {
-    const { offsetX, offsetY } = e
-    this.canvasContext.lineTo(offsetX, offsetY)
-    this.canvasContext.strokeStyle = this.color
-    this.canvasContext.stroke()
+        // Current pos
+        const { offsetX, offsetY } = e
+        
+        this.canvasContext.strokeStyle = this.color
+        
+        this.canvasContext.lineTo(offsetX, offsetY)
+        this.canvasContext.stroke()
+        
+        this.canvasContext.beginPath()
+        this.canvasContext.moveTo(offsetX, offsetY)
     }
 
     /**

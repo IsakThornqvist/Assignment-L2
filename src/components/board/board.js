@@ -23,7 +23,7 @@ customElements.define('my-board',
     connectedCallback () { 
         console.log('my-board added')
 
-        this.#canvas.addEventListener('mousedown', e => this.#pen.handleMouseDown())
+        this.#canvas.addEventListener('mousedown', e => this.#pen.handleMouseDown(e))
 
         this.#canvas.addEventListener('mouseup', e => this.#pen.handleMouseUp())
 
