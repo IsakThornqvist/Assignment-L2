@@ -1,0 +1,24 @@
+{
+  "name": "assignment-l2",
+  "version": "1.0.0",
+  "description": "1DV610 - Assignment L2",
+  "type": "module",
+  "browser": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "npx eslint ./src/components || exit 0",
+    "lint:fix": "npx eslint ./src/components --fix || exit 0"
+  },
+  "contributors": [
+    "Isak Thörnqvist <it222hp@student.lnu.se>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@lnu/eslint-config": "^1.1.10",
+    "eslint": "^8.57.0",
+    "vite": "^7.1.5"
+  }
+}
