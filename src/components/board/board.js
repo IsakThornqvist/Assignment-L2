@@ -7,6 +7,7 @@ customElements.define('my-board',
         #myBoard
         #pen
         #canvas
+        #currentTool = 'none'
 
         constructor () {
             super()
@@ -23,11 +24,35 @@ customElements.define('my-board',
     connectedCallback () { 
         console.log('my-board added')
 
-        this.#canvas.addEventListener('mousedown', e => this.#pen.handleMouseDown(e))
+        this.shadowRoot.querySelectorAll('.toolButton').forEach(button => {
+            button.addEventListener('click', () => {
+                this.shadowRoot.querySelectorAll('.toolButton').forEach(button =>
+                    button.classList.remove('active')
+                )
 
-        this.#canvas.addEventListener('mouseup', e => this.#pen.handleMouseUp())
+                button.classList.add('active')
+                this.#currentTool = button.dataset.tool
+                console.log('Current tool is', this.#currentTool)
+            })
+        })
 
-        this.#canvas.addEventListener('mousemove', e => this.#pen.handleMouseMove(e))
+      this.#canvas.addEventListener('mousedown', e => {
+                if (this.#currentTool === 'pen') {
+                    this.#pen.handleMouseDown(e)
+                }
+            })
+
+            this.#canvas.addEventListener('mouseup', e => {
+                if (this.#currentTool === 'pen') {
+                    this.#pen.handleMouseUp(e)
+                }
+            })
+
+            this.#canvas.addEventListener('mousemove', e => {
+                if (this.#currentTool === 'pen') {
+                    this.#pen.handleMouseMove(e)
+                }
+            })
     }
 
 
