@@ -22,39 +22,63 @@ customElements.define('my-board',
 
 
     connectedCallback () { 
+
         console.log('my-board added')
 
-        this.shadowRoot.querySelectorAll('.toolButton').forEach(button => {
-            button.addEventListener('click', () => {
-                this.shadowRoot.querySelectorAll('.toolButton').forEach(button =>
-                    button.classList.remove('active')
-                )
-
-                button.classList.add('active')
-                this.#currentTool = button.dataset.tool
-                console.log('Current tool is', this.#currentTool)
-            })
-        })
-
-      this.#canvas.addEventListener('mousedown', e => {
-                if (this.#currentTool === 'pen') {
-                    this.#pen.handleMouseDown(e)
-                }
-            })
-
-            this.#canvas.addEventListener('mouseup', e => {
-                if (this.#currentTool === 'pen') {
-                    this.#pen.handleMouseUp(e)
-                }
-            })
-
-            this.#canvas.addEventListener('mousemove', e => {
-                if (this.#currentTool === 'pen') {
-                    this.#pen.handleMouseMove(e)
-                }
-            })
+        this.setupToolButtons()
+        this.setupPenEvents()
     }
 
 
+setupPenEvents () {
+this.#canvas.addEventListener('mousedown', e => this.handleMouseDown(e))
+this.#canvas.addEventListener('mouseup', e => this.handleMouseUp(e))
+this.#canvas.addEventListener('mousemove', e => this.handleMouseMove(e))
 
+}
+
+setupToolButtons() {
+    this.shadowRoot.querySelectorAll('.toolButton').forEach(button => {
+        button.addEventListener('click', () => {
+            this.swapTool(button.dataset.tool, button)
+        })
     })
+}
+
+swapTool(toolname, buttonClicked) {
+this.shadowRoot.querySelectorAll('.toolButton').forEach(button =>
+    button.classList.remove('active')
+)
+
+buttonClicked.classList.add('active')
+
+this.#currentTool = toolname
+console.log('Current tool is', this.#currentTool)
+
+}
+
+handleMouseUp(e) {
+this.#canvas.addEventListener('mouseup', e => {
+    if (this.#currentTool === 'pen') {
+    this.#pen.handleMouseUp(e)
+    }
+    })
+}
+
+handleMouseDown(e) {
+this.#canvas.addEventListener('mousedown', e => {
+    if (this.#currentTool === 'pen') {
+    this.#pen.handleMouseDown(e)
+    }
+})
+}
+
+handleMouseMove(e) {
+this.#canvas.addEventListener('mousemove', e => {
+    if (this.#currentTool === 'pen') {
+        this.#pen.handleMouseMove(e)
+    }
+})
+}
+
+})

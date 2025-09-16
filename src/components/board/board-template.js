@@ -15,6 +15,7 @@ template.innerHTML = `
     <button class='toolButton active' data-tool='none' id='noneButton'> None</button>
     <button class='toolButton' data-tool='pen'id='penButton'> Pen</button>
     <button class='toolButton' data-tool='eraser'id='eraserButton'> Eraser</button>
+    <button class='toolButton' data-tool='shapes'id='shapesButton'> Shapes</button>
 </div>
 
 </div>
