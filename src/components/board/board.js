@@ -36,26 +36,11 @@ customElements.define('my-board',
      */
     connectedCallback () { 
 
-    this.#widthButton.addEventListener('click', () => {
-        const widthValue = this.#widthInput.value
-        if(!isNaN(widthValue)) {
-            this.#canvas.width = widthValue
-            console.log(`Width changed to ${widthValue} px`)
-        }
-    })
-
-        this.#heightButton.addEventListener('click', () => {
-        const heightValue = this.#heightInput.value
-        if(!isNaN(heightValue)) {
-            this.#canvas.height = heightValue
-            console.log(`Height changed to ${heightValue} px`)
-        }
-    })
-
     console.log('my-board added')
 
     this.setupToolButtons()
     this.setupPenEvents()
+    this.setWidthAndHeight()
     }
 
 
@@ -146,6 +131,24 @@ this.#canvas.addEventListener('mousemove', e => {
         this.#pen.handleMouseMove(e)
     }
 })
+}
+
+setWidthAndHeight () {
+    this.#widthButton.addEventListener('click', () => {
+        const widthValue = this.#widthInput.value
+        if(!isNaN(widthValue)) {
+            this.#canvas.width = widthValue
+            console.log(`Width changed to ${widthValue} px`)
+        }
+    })
+
+        this.#heightButton.addEventListener('click', () => {
+        const heightValue = this.#heightInput.value
+        if(!isNaN(heightValue)) {
+            this.#canvas.height = heightValue
+            console.log(`Height changed to ${heightValue} px`)
+        }
+    })
 }
 
 

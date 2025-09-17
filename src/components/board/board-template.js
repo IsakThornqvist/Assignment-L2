@@ -31,32 +31,177 @@ template.innerHTML = `
 
 
 <style>
+#boardContainer {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+    max-width: 1200px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', sans-serif;
+}
 
+#boardContainer p {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2563eb;
+    margin: 0 0 24px 0;
+    text-align: center;
+}
 
-    #myCanvas {
-       border:1px solid #000000 
+#canvasContainer {
+    display: grid;
+    grid-template-columns: 1fr 180px;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+    grid-template-areas: 
+        "controls toolbar"
+        "canvas toolbar";
+}
+
+#myCanvas {
+    grid-area: canvas;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#myCanvas:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 10px rgba(59,130,246,0.15);
+    cursor: crosshair; 
+}
+
+#heightWidthChangeContainer {
+    grid-area: controls;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: #f9fafb;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+#widthInput, #heightInput {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+    width: 100px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#widthInput:focus, #heightInput:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+}
+
+#widthButton, #heightButton {
+    padding: 8px 16px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#widthButton:hover, #heightButton:hover {
+    background: #1e40af;
+}
+
+#toolBar {
+    grid-area: toolbar;
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    height: fit-content;
+}
+
+#toolBar h1 {
+    margin: 0 0 16px 0;
+    color: #111827;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.toolButton {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    background: white;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #374151;
+    transition: all 0.2s;
+}
+
+.toolButton:hover {
+    border-color: #3b82f6;
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.toolButton.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+    box-shadow: 0 2px 6px rgba(59,130,246,0.25);
+}
+
+.toolButton:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+    #canvasContainer {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "controls"
+            "canvas"
+            "toolbar";
     }
-
-        #toolBar {
-        width: 150px;
-        background: #f5f5f5;
-        padding: 15px;
+    
+    #toolBar {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 12px;
     }
-
-        .toolButton {
-        display: block;
-        width: 100%;
-        margin-bottom: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        background: white;
-        cursor: pointer;
+    
+    #toolBar h1 {
+        min-width: 60px;
+        margin: 0 12px 0 0;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
     }
-
-        .toolButton.active {
-        background: #17bd33ff;
-        color: white;
+    
+    .toolButton {
+        margin-bottom: 0;
+        min-width: 70px;
+        white-space: nowrap;
     }
+    
+    #boardContainer {
+        margin: 10px;
+        padding: 16px;
+    }
+}
 
 </style>
 
