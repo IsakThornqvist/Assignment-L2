@@ -29,6 +29,7 @@ setWidthAndHeight () {
 
 
 **1. Do One Thing**
+
 The code above follows the **Do One Thing** rule, the only thing the method **setWidthAndHeight** does is described in the name of the function, this function only handles the logic with setting the width and height of the canvas. 
 
 # Reflection on the code quality
