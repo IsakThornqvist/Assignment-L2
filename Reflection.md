@@ -1,9 +1,15 @@
 # Reflection
 The first issue I ran into was that I was not familiar with the canvas element at all, at first I started trying to make my canvas via a div but whern I later checked MDN and found out that the canvas element can work for my project it mkade it alot easier, I also have gotten experience with the diffrent methods that exist and can be used in combination with the canvas such as, stroke() and beginPath(), these methods made it super convinient to make for example the pen work correctly and the documentation around the methods was very great.
 
-# Names in the code
+# Naming Analysis
 
-# The longest method/function
+| Name | Explaination | Reflection |
+|------|------------|--------------------------------------|
+| `my-board` | The name of the custom-element that will be used in the html to show the component | **Use Intention-Revealing Names** the name clearly represents what the customelement represents which is mthe board itself, I could probably be even more specific and name it call it something like 'dwaring board' but I think the name I gave it is good enough and most people will understand the meaning of it. |
+| `Identifier2` | Descriptoin | Reflection |
+
+**Refelction of what I learnt by reading chapter 2**  
+
 
 # The longest method/function
 
