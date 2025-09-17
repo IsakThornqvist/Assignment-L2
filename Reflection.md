@@ -5,7 +5,10 @@ The first issue I ran into was that I was not familiar with the canvas element a
 
 # The longest method/function
 
-<pre> ```setWidthAndHeight () {
+# The longest method/function
+
+```js
+setWidthAndHeight () {
     this.#widthButton.addEventListener('click', () => {
         const widthValue = this.#widthInput.value
         if(!isNaN(widthValue)) {
@@ -14,14 +17,16 @@ The first issue I ran into was that I was not familiar with the canvas element a
         }
     })
 
-        this.#heightButton.addEventListener('click', () => {
+    this.#heightButton.addEventListener('click', () => {
         const heightValue = this.#heightInput.value
         if(!isNaN(heightValue)) {
             this.#canvas.height = heightValue
             console.log(`Height changed to ${heightValue} px`)
         }
     })
-}``` </pre>
+}
+```
+
 
 **1. Do One Thing**
 The code above follows the **Do One Thing** rule, the only thing the method **setWidthAndHeight** does is described in the name of the function, this function only handles the logic with setting the width and height of the canvas. 
