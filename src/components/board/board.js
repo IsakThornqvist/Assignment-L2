@@ -8,6 +8,10 @@ customElements.define('my-board',
         #pen
         #canvas
         #currentTool = 'none'
+        #widthInput
+        #heightInput
+        #widthButton
+        #heightButton
 
         constructor () {
             super()
@@ -16,6 +20,10 @@ customElements.define('my-board',
             this.shadowRoot.appendChild(template.content.cloneNode(true))
             this.#myBoard = this.shadowRoot.querySelector('#boardContainer')
             this.#canvas = this.shadowRoot.querySelector('#myCanvas')
+            this.#heightInput = this.shadowRoot.querySelector('#heightInput')
+            this.#widthInput = this.shadowRoot.querySelector('#widthInput')
+            this.#widthButton = this.shadowRoot.querySelector('#widthButton')
+            this.#heightButton = this.shadowRoot.querySelector('#heightButton')
 
             this.#pen = new PenTool(this.#canvas.getContext('2d'))
         }
@@ -28,10 +36,26 @@ customElements.define('my-board',
      */
     connectedCallback () { 
 
-        console.log('my-board added')
+    this.#widthButton.addEventListener('click', () => {
+        const widthValue = this.#widthInput.value
+        if(!isNaN(widthValue)) {
+            this.#canvas.width = widthValue
+            console.log(`Width changed to ${widthValue} px`)
+        }
+    })
 
-        this.setupToolButtons()
-        this.setupPenEvents()
+        this.#heightButton.addEventListener('click', () => {
+        const heightValue = this.#heightInput.value
+        if(!isNaN(heightValue)) {
+            this.#canvas.height = heightValue
+            console.log(`Height changed to ${heightValue} px`)
+        }
+    })
+
+    console.log('my-board added')
+
+    this.setupToolButtons()
+    this.setupPenEvents()
     }
 
 

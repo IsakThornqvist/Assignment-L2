@@ -14,12 +14,12 @@ export class PenTool {
 
     /**
      * Handles mouse down event to start drawing.
-     * @param {MouseEvent} e
+     * @param {MouseEvent} event
      */
-    handleMouseDown(e) {
+    handleMouseDown(event) {
         this.isDrawing = true
 
-        const { offsetX, offsetY } = e
+        const { offsetX, offsetY } = event
         // Lift the pen
         this.canvasContext.beginPath()
         this.canvasContext.moveTo(offsetX, offsetY)
@@ -28,11 +28,11 @@ export class PenTool {
 
     /**
      * Handles mouse move event to draw if drawing is active.
-     * @param {MouseEvent} e
+     * @param {MouseEvent} event
      */
-handleMouseMove(e) {
+handleMouseMove(event) {
     if (!this.isDrawing) return
-    this.draw(e)
+    this.draw(event)
 }
 
     /**
@@ -42,22 +42,22 @@ handleMouseMove(e) {
         if (this.isDrawing) {
             this.isDrawing = false
             
-            // Start fresh so that the next dwaring doesn't connect
-            this.canvasContext.beginPath()
-            console.log('Pen up')
+        // Start fresh so that the next dwaring doesn't connect
+        this.canvasContext.beginPath()
+        console.log('Pen up')
         }
     }
 
     /**
      * Draws a line to the current mouse position.
-     * @param {MouseEvent} e
+     * @param {MouseEvent} event
      */
-    draw(e) {
+    draw(event) {
         // Current pos
-        const { offsetX, offsetY } = e
+        const { offsetX, offsetY } = event
         
         this.canvasContext.strokeStyle = this.color
-        
+
         this.canvasContext.lineTo(offsetX, offsetY)
         this.canvasContext.stroke()
         

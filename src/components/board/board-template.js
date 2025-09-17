@@ -10,6 +10,13 @@ template.innerHTML = `
 <canvas id="myCanvas" width="600" height="400">
 </canvas>
 
+<div id='heightWidthChangeContainer'>
+<input id='widthInput' placeholder='Set width'></input>
+<button id='widthButton' type='submit'> Change Width </button>
+<input id='heightInput' placeholder='Set height'></input>
+<button id='heightButton' type='submit'> Change Height </button>
+</div>
+
 <div id='toolBar'>
     <h1>Tools</h1>
     <button class='toolButton active' data-tool='none' id='noneButton'> None</button>
