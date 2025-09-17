@@ -5,8 +5,8 @@ The first issue I ran into was that I was not familiar with the canvas element a
 
 | Name | Explaination | Reflection |
 |------|------------|--------------------------------------|
-| `my-board` | The name of the custom-element that will be used in the html to show the component | **Use Intention-Revealing Names** the name clearly represents what the customelement represents which is mthe board itself, I could probably be even more specific and name it call it something like 'dwaring board' but I think the name I gave it is good enough and most people will understand the meaning of it. |
-| `Identifier2` | Descriptoin | Reflection |
+| `my-board` | The name of the custom-element that will be used in the html to show the component | **Use Intention-Revealing Names:** The name clearly represents what the customelement represents which is the board itself, I could probably be even more specific and call it something like 'drawing board' but I think the name I gave it is good enough and most people will understand the meaning of it. |
+| `Identifier2` | Description | Reflection |
 
 **Refelction of what I learnt by reading chapter 2**  
 
