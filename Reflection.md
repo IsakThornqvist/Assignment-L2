@@ -1,5 +1,16 @@
 # Reflection
-The first issue I ran into was that I was not familiar with the canvas element at all, at first I started trying to make my canvas via a div but whern I later checked MDN and found out that the canvas element can work for my project it mkade it alot easier, I also have gotten experience with the diffrent methods that exist and can be used in combination with the canvas such as, stroke() and beginPath(), these methods made it super convinient to make for example the pen work correctly and the documentation around the methods was very great.
+The first challenge I encountered was my lack of familiarity with the HTML <canvas> element. Initially, I attempted to create my canvas using a <div>, but after consulting the MDN documentation
+, I realized that the <canvas> element was much better suited for my project.
+
+Through this process, I gained hands-on experience with various canvas methods, such as beginPath() and stroke(). These methods made it straightforward to implement functionality like the pen tool correctly. The documentation for these methods was extremely helpful and made it easy to understand how to use them in combination to achieve the desired drawing behavior.
+
+I wanted to set up testing for my module early in the development process. Initially, I encountered issues with importing the module using:
+
+```js
+import '../src/components/board/board.js'
+```
+
+The issue I had was that Jest could not natively handle ES module imports from the browser-based code. To resolve this, I configured Babel and updated the Jest configuration to work with ES modules. Once these configurations were in place, the tests ran successfully, allowing me to validate the functionality of my module.
 
 # Naming Analysis
 
