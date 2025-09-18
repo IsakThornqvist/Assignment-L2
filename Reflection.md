@@ -1,6 +1,5 @@
 # Reflection
-The first challenge I encountered was my lack of familiarity with the HTML <canvas> element. Initially, I attempted to create my canvas using a <div>, but after consulting the MDN documentation
-, I realized that the <canvas> element was much better suited for my project.
+The first challenge I encountered was my lack of familiarity with the HTML element **canvas**. Initially, I attempted to create my canvas using a **div** element, but after consulting the MDN documentation, I realized that the **canvas** element was much better suited for my project.
 
 Through this process, I gained hands-on experience with various canvas methods, such as beginPath() and stroke(). These methods made it straightforward to implement functionality like the pen tool correctly. The documentation for these methods was extremely helpful and made it easy to understand how to use them in combination to achieve the desired drawing behavior.
 
