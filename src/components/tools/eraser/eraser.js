@@ -1,22 +1,42 @@
+/**
+ *
+ */
 export class EraseTool {
-    constructor () {
+  /**
+   *
+   */
+  constructor () {
 
-    }
+  }
 
-    handleMouseDown(e) {
+  /**
+   *
+   * @param e
+   */
+  handleMouseDown (e) {
 
-    }
+  }
 
-    handleMouseMove(e) {
+  /**
+   *
+   * @param e
+   */
+  handleMouseMove (e) {
 
-    }
+  }
 
-    handleMouseUp() {
+  /**
+   *
+   */
+  handleMouseUp () {
 
-    }
+  }
 
-    erase(e) {
+  /**
+   *
+   * @param e
+   */
+  erase (e) {
 
-    }
-
+  }
 }
