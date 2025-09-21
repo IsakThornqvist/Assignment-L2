@@ -1,4 +1,5 @@
 import { PenTool } from '../tools/pen/pen.js'
+import { EraseTool } from '../tools/eraser/eraser.js'
 import { template } from './board-template.js'
 
 customElements.define('my-board',
@@ -9,6 +10,7 @@ customElements.define('my-board',
   class extends HTMLElement {
     #myBoard
     #pen
+    #eraser
     #canvas
     #currentTool = 'none'
     #widthInput
@@ -32,6 +34,7 @@ customElements.define('my-board',
       this.#heightButton = this.shadowRoot.querySelector('#heightButton')
 
       this.#pen = new PenTool(this.#canvas.getContext('2d'))
+      this.#eraser = new EraseTool(this.#canvas.getContext('2d'))
     }
 
     /**
@@ -102,6 +105,8 @@ customElements.define('my-board',
       this.#canvas.addEventListener('mouseup', e => {
         if (this.#currentTool === 'pen') {
           this.#pen.handleMouseUp(e)
+        } else if (this.#currentTool === 'eraser') {
+          this.#eraser.handleMouseUp(e)
         }
       })
     }
@@ -117,6 +122,8 @@ customElements.define('my-board',
       this.#canvas.addEventListener('mousedown', e => {
         if (this.#currentTool === 'pen') {
           this.#pen.handleMouseDown(e)
+        } else if (this.#currentTool === 'eraser') {
+          this.#eraser.handleMouseDown(e)
         }
       })
     }
@@ -131,6 +138,8 @@ customElements.define('my-board',
       this.#canvas.addEventListener('mousemove', e => {
         if (this.#currentTool === 'pen') {
           this.#pen.handleMouseMove(e)
+        } else if (this.#currentTool === 'eraser') {
+          this.#eraser.handleMouseMove(e)
         }
       })
     }
