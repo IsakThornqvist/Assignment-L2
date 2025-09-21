@@ -1,9 +1,11 @@
 /**
- *
+ * Tool for erasing parts of a canvas by clearing rectangular areas.
  */
 export class EraseTool {
   /**
+   * Creates an instance of EraseTool.
    *
+   * @param {CanvasRenderingContext2D} canvasContext - The 2D context of the canvas to erase on.
    */
   constructor (canvasContext) {
     this.isErasing = false
@@ -12,8 +14,9 @@ export class EraseTool {
   }
 
   /**
+   * Handles mouse down event to start erasing.
    *
-   * @param event
+   * @param {MouseEvent} event - The mouse down event object.
    */
   handleMouseDown (event) {
     this.isErasing = true
@@ -26,8 +29,9 @@ export class EraseTool {
   }
 
   /**
+   * Handles mouse move event to erase if erasing is active.
    *
-   * @param event
+   * @param {MouseEvent} event - The mouse move event object.
    */
   handleMouseMove (event) {
     if (!this.isErasing) return
@@ -35,7 +39,7 @@ export class EraseTool {
   }
 
   /**
-   *
+   * Handles mouse up event to stop erasing.
    */
   handleMouseUp () {
     if (this.isErasing) {
@@ -47,8 +51,9 @@ export class EraseTool {
   }
 
   /**
+   * Erases a rectangular area at the current mouse position.
    *
-   * @param event
+   * @param {MouseEvent} event - The mouse event object.
    */
   erase (event) {
     const { offsetX, offsetY } = event

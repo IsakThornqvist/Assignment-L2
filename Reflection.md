@@ -11,6 +11,25 @@ import '../src/components/board/board.js'
 
 The issue I had was that Jest could not natively handle ES module imports from the browser-based code. To resolve this, I configured Babel and updated the Jest configuration to work with ES modules. Once these configurations were in place, the tests ran successfully, allowing me to validate the functionality of my module.
 
+Setting up the eraser tool went really well, and I understood what I needed to do from the start. Since the pen tool was already implemented, I realized that much of its code could be reused, as both the pen and eraser work in a similar way.
+
+Initially, I tried to make the eraser by simply turning it into a white pen. However, I quickly realized this approach had several problems. First, if I wanted to allow users to change the background color of the canvas, the eraser would fail immediately, since it would only "erase" to white, not to the actual background color. Another issue was that the eraser itself didn’t work well at all,it was hard to erase cleanly when all it did was draw white lines.
+
+Instead of using a white pen, I decided to implement the eraser by actually clearing parts of the canvas. I used the clearRect method of the canvas context to remove a rectangular area where the user moves the eraser. This approach works regardless of the background color and provides a much more natural erasing experience. By clearing pixels directly, the eraser behaves as expected and is not dependent on the canvas color.
+
+```js
+  /**
+   * Erases a rectangular area at the current mouse position.
+   *
+   * @param {MouseEvent} event - The mouse event object.
+   */
+  erase (event) {
+    const { offsetX, offsetY } = event
+    const size = 20
+    this.canvasContext.clearRect(offsetX - size / 2, offsetY - size / 2, size, size)
+  }
+  ```
+
 # Naming Analysis
 
 | Name | Explaination | Reflection |
