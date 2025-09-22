@@ -75,7 +75,7 @@ This setup is straightforward to extend — I can either add more predefined but
 | `PenTool` | Class name for the tool that handles drawing freehand lines on the canvas. | **Classes and Objects Should Have Noun or Noun Phrase Names:** The name correctly uses a noun that reflects its role. It reveals the intent of the class (a pen-like drawing tool). One improvement could be dropping the suffix “Tool” since the module already exists in a /tools/ directory, which makes it redundant. |
 | `setColor` | Method name in PenTool that changes the color of the pen. | **Method Names Should Be Verbs or Verb Phrases:** This follows the rule because setColor describes exactly what the function does: it sets the color. It could be even clearer if renamed to setPenColor, since the tool works with the pen, but overall it’s descriptive and conventional. |
 
-**Refelction of what I learnt by reading chapter 2**  
+## Refelction of what I learnt by reading chapter 2 
 
 
 # The longest method/function
