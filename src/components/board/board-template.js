@@ -25,12 +25,54 @@ template.innerHTML = `
     <button class='toolButton' data-tool='shapes'id='shapesButton'> Shapes</button>
 </div>
 
+<div id='colorPicker' class='hidden'> 
+    <button id='blueButton' class='colorButton' data-color='blue'> </button>
+    <button id='greenButton' class='colorButton' data-color='green'> </button>
+    <button id='redButton' class='colorButton' data-color='red'> </button>
+    <button id='yellowButton' class='colorButton' data-color='yellow'> </button>
+    </div>
+
 </div>
 
 </div>
 
 
 <style>
+
+    .hidden {
+        display: none;
+    }
+
+.colorButton {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #e5e7eb;
+    margin: 0 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    display: inline-block;
+}
+
+#greenButton {
+    background-color: #15ff00ff;
+}
+#blueButton {
+    background-color: #2563eb;
+}
+#redButton {
+    background-color: #ff0000ff;
+}
+#yellowButton {
+    background-color: #eeff00ff;
+}
+
+.colorButton:focus, .colorButton:hover {
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(59,130,246,0.15);
+}
 #boardContainer {
     background: #ffffff;
     border-radius: 12px;

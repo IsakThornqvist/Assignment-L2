@@ -8,7 +8,7 @@ export class PenTool {
   constructor (canvasContext) {
     this.isDrawing = false
     this.canvasContext = canvasContext
-    this.color = 'red'
+    this.color = 'black'
   }
 
   /**
