@@ -30,12 +30,50 @@ Instead of using a white pen, I decided to implement the eraser by actually clea
   }
   ```
 
+When designing the pen functionality, I considered several approaches for handling color changes.  
+The long-term goal is to implement a full **RGB color picker** so that users can select any color freely.  
+For the current version, I chose to provide a set of predefined colors.
+
+To achieve this, I added a `colorPicker` section in the **board-template**, which contains four buttons.  
+Each button has a `data-color` attribute that stores its corresponding color value.  
+
+In **board.js**, I listen for click events on these buttons.  
+When a button is pressed, the pen tool updates its active color using the value from the `data-color` attribute.  
+
+This setup is straightforward to extend — I can either add more predefined buttons or later replace them with a full RGB picker.
+
+---
+
+#### Flow of Color Selection
+
+1. User clicks a color button inside the `colorPicker`.
+2. The button’s `data-color` attribute is read in `board.js`.
+3. The value is passed to `pen.setColor(color)`.
+4. The pen updates its stroke color and uses it for subsequent drawings.
+
+```js
+      /**
+     * Sets up event listeners for color buttons to change the pen color.
+     */
+    pickColor () {
+      this.#colorPicker.querySelectorAll('.colorButton').forEach(button => {
+        button.addEventListener('click', () => {
+          const color = button.getAttribute('data-color')
+          console.log(`color selected is ${color}`)
+          this.#pen.setColor(color)
+        })
+      })
+    }
+    ```
+
+
 # Naming Analysis
 
 | Name | Explaination | Reflection |
 |------|------------|--------------------------------------|
 | `my-board` | The name of the custom-element that will be used in the html to show the component | **Use Intention-Revealing Names:** The name clearly represents what the customelement represents which is the board itself, I could probably be even more specific and call it something like 'drawing board' but I think the name I gave it is good enough and most people will understand the meaning of it. |
-| `Identifier2` | Description | Reflection |
+| `PenTool` | Class name for the tool that handles drawing freehand lines on the canvas. | **Classes and Objects Should Have Noun or Noun Phrase Names:** The name correctly uses a noun that reflects its role. It reveals the intent of the class (a pen-like drawing tool). One improvement could be dropping the suffix “Tool” since the module already exists in a /tools/ directory, which makes it redundant. |
+| `setColor` | Method name in PenTool that changes the color of the pen. | **Method Names Should Be Verbs or Verb Phrases:** This follows the rule because setColor describes exactly what the function does: it sets the color. It could be even clearer if renamed to setPenColor, since the tool works with the pen, but overall it’s descriptive and conventional. |
 
 **Refelction of what I learnt by reading chapter 2**  
 
