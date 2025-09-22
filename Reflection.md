@@ -51,7 +51,7 @@ This setup is straightforward to extend — I can either add more predefined but
 3. The value is passed to `pen.setColor(color)`.
 4. The pen updates its stroke color and uses it for subsequent drawings.
 
-```js
+    ```js
       /**
      * Sets up event listeners for color buttons to change the pen color.
      */
