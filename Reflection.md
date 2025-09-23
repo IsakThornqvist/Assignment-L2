@@ -66,6 +66,27 @@ This setup is straightforward to extend — I can either add more predefined but
     }
     ```
 
+    For the pen size feature, I wanted users to draw with different thicknesses instead of a fixed line width. To do this, I created a penSizePicker section in the template with buttons that each have a data-size attribute that I use to change the size of the pen depending on what button the user clicks.
+
+    In board.js, I added event listeners so that when a button is clicked, the value from data-size is passed to pen.setSize(size). At first, I ran into the issue that the values were read as strings, which caused problems since the canvas expects a number. I fixed this by converting the values with parseInt.
+
+    In the future, this could easily be extended with a slider instead of fixed buttons for even more flexibility.
+
+        ```js
+    /**
+     * Sets up event listeners for pen size buttons to change the pen size.
+     */
+    pickSize () {
+      this.#penSizePicker.querySelectorAll('.sizeButton').forEach(button => {
+        button.addEventListener('click', () => {
+          const size = parseInt(button.getAttribute('data-size'), 10)
+          console.log(`size selected is ${size}`)
+          this.#pen.setSize(size)
+        })
+      })
+    }
+    ```
+
 
 # Naming Analysis
 

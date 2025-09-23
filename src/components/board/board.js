@@ -18,6 +18,7 @@ customElements.define('my-board',
     #widthButton
     #heightButton
     #colorPicker
+    #penSizePicker
 
     /**
      * Initializes the board component, sets up shadow DOM, and prepares tool and canvas references.
@@ -34,6 +35,7 @@ customElements.define('my-board',
       this.#widthButton = this.shadowRoot.querySelector('#widthButton')
       this.#heightButton = this.shadowRoot.querySelector('#heightButton')
       this.#colorPicker = this.shadowRoot.querySelector('#colorPicker')
+      this.#penSizePicker = this.shadowRoot.querySelector('#penSizePicker')
 
       this.#pen = new PenTool(this.#canvas.getContext('2d'))
       this.#eraser = new EraseTool(this.#canvas.getContext('2d'))
@@ -51,6 +53,7 @@ customElements.define('my-board',
       this.setupPenEvents()
       this.setWidthAndHeight()
       this.pickColor()
+      this.pickSize()
     }
 
     /**
@@ -92,6 +95,19 @@ customElements.define('my-board',
     }
 
     /**
+     * Sets up event listeners for pen size buttons to change the pen size.
+     */
+    pickSize () {
+      this.#penSizePicker.querySelectorAll('.sizeButton').forEach(button => {
+        button.addEventListener('click', () => {
+          const size = parseInt(button.getAttribute('data-size'), 10)
+          console.log(`size selected is ${size}`)
+          this.#pen.setSize(size)
+        })
+      })
+    }
+
+    /**
      * Swaps the currently selected tool and updates the active button UI.
      *
      * Removes the 'active' class from all tool buttons, adds it to the clicked button,
@@ -111,6 +127,7 @@ customElements.define('my-board',
       console.log('Current tool is', this.#currentTool)
       if (this.#currentTool === 'pen') {
         this.#colorPicker.classList.remove('hidden')
+        this.#penSizePicker.classList.remove('hidden')
       }
     }
 

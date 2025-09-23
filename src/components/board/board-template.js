@@ -32,6 +32,12 @@ template.innerHTML = `
     <button id='yellowButton' class='colorButton' data-color='yellow'> </button>
     </div>
 
+    <div id='penSizePicker' class='hidden'> 
+    <button class='sizeButton' data-size='2'>Small</button>
+    <button class='sizeButton' data-size='5'>Medium</button>
+    <button class='sizeButton' data-size='10'>Big</button>
+    </div>
+
 </div>
 
 </div>

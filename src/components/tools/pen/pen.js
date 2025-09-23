@@ -9,6 +9,7 @@ export class PenTool {
     this.isDrawing = false
     this.canvasContext = canvasContext
     this.color = 'black'
+    this.size = 1
   }
 
   /**
@@ -33,6 +34,7 @@ export class PenTool {
    */
   handleMouseMove (event) {
     if (!this.isDrawing) return
+    this.canvasContext.lineWidth = this.size
     this.draw(event)
   }
 
@@ -74,5 +76,14 @@ export class PenTool {
    */
   setColor (color) {
     this.color = color
+  }
+
+  /**
+   * Sets the size for the pen tool.
+   *
+   * @param {number} size - The size to set for drawing.
+   */
+  setSize (size) {
+    this.size = size
   }
 }
