@@ -72,7 +72,7 @@ This setup is straightforward to extend — I can either add more predefined but
 
     In the future, this could easily be extended with a slider instead of fixed buttons for even more flexibility.
 
-        ```js
+    ```js
     /**
      * Sets up event listeners for pen size buttons to change the pen size.
      */
@@ -95,6 +95,8 @@ This setup is straightforward to extend — I can either add more predefined but
 | `my-board` | The name of the custom-element that will be used in the html to show the component | **Use Intention-Revealing Names:** The name clearly represents what the customelement represents which is the board itself, I could probably be even more specific and call it something like 'drawing board' but I think the name I gave it is good enough and most people will understand the meaning of it. |
 | `PenTool` | Class name for the tool that handles drawing freehand lines on the canvas. | **Classes and Objects Should Have Noun or Noun Phrase Names:** The name correctly uses a noun that reflects its role. It reveals the intent of the class (a pen-like drawing tool). One improvement could be dropping the suffix “Tool” since the module already exists in a /tools/ directory, which makes it redundant. |
 | `setColor` | Method name in PenTool that changes the color of the pen. | **Method Names Should Be Verbs or Verb Phrases:** This follows the rule because setColor describes exactly what the function does: it sets the color. It could be even clearer if renamed to setPenColor, since the tool works with the pen, but overall it’s descriptive and conventional. |
+| `pickColor` | Method that listens for color button clicks and updates the pen color. | **Use Solution Domain Names:** “Pick” is understandable, but could be confused with a color-picker input. Something like pickColorButtons might better reflect its purpose. |
+| `erase` | Method in the eraser tool that removes pixels from the canvas. | **Avoid Disinformation:** The name is simple and effective. However, it does not reveal that it erases a rectangular area rather than a freehand line. A more precise name could be eraseAtPosition. |
 
 ## Refelction of what I learnt by reading chapter 2 
 
@@ -126,13 +128,27 @@ setWidthAndHeight () {
 
 The code above follows the **Do One Thing** rule, the only thing the method **setWidthAndHeight** does is described in the name of the function, this function only handles the logic with setting the width and height of the canvas. 
 
+  ```js
+  /**
+   * Draws a line to the current mouse position.
+   *
+   * @param {MouseEvent} event
+   */
+  draw (event) {
+    // Current pos
+    const { offsetX, offsetY } = event
+
+    this.canvasContext.strokeStyle = this.color
+
+    this.canvasContext.lineTo(offsetX, offsetY)
+    this.canvasContext.stroke()
+
+    this.canvasContext.beginPath()
+    this.canvasContext.moveTo(offsetX, offsetY)
+  }
+  ```
+  
+  **2. Small Functions**
+This method is short, but it currently mixes concerns, it both handles the mouse event and performs canvas drawing. According to **Chapter 3 of Clean Code**, each function should do one thing. Splitting this into helper methods such as startDrawing(event) and continueDrawing(event) would improve readability and maintainability for both the developer and the user.
+
 # Reflection on the code quality
-
-# Notes to self
-
-pen.js
-
-beginPath() = "Lift pen completely off paper and start fresh"
-moveTo(x, y) = "Place pen at position x,y WITHOUT drawing"
-lineTo(x, y) = "Draw line from current position to x,y"
-stroke() = "Make the line visible/permanent"
