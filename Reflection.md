@@ -1,4 +1,4 @@
-# Reflection
+# Reflection during development
 The first challenge I encountered was my lack of familiarity with the HTML element **canvas**. Initially, I attempted to create my canvas using a **div** element, but after consulting the MDN documentation, I realized that the **canvas** element was much better suited for my project.
 
 Through this process, I gained hands-on experience with various canvas methods, such as beginPath() and stroke(). These methods made it straightforward to implement functionality like the pen tool correctly. The documentation for these methods was extremely helpful and made it easy to understand how to use them in combination to achieve the desired drawing behavior.
@@ -100,6 +100,21 @@ This setup is straightforward to extend — I can either add more predefined but
 
 ## Refelction of what I learnt by reading chapter 2 
 
+While reading Chapter 2 of Clean Code, I gained a appreciation for the importance of meaningful names in programming. Even before reading this I always have tried to write the code in a way that is easy to understand both for myself and also for other people that may come across the code. I learned that choosing good names is not just a matter of "gold-spray" or to make things look good it directly affects how easily other developers can understand and use your code.
+
+**Some key takeaways are:**
+
+**Intention-Revealing Names:** Names should clearly express what a class, function, or variable does. For example, naming my custom element my-board immediately communicates that it represents a board component.
+
+**Avoid Disinformation:** Names should not include unnecessary numbers or terms that might confuse users. For instance, I realized that appending numbers to a class or function name adds no real value most of the time.
+
+**Use Problem Domain or Solution Domain Names:** It is important to use terms that relate either to the problem you are solving or to the solution itself. This helps other programmers quickly understand the purpose without needing additional context.
+
+**Readable and Pronounceable Names:** Names should be easy to read and pronounce so they are easier to discuss, debug, and maintain both for the developer and also for the consumer.
+
+Reflecting on my own code, I noticed that while most of my names were fairly descriptive, some could be even clearer. For example, setColor could be expanded to setPenColor to explicitly indicate which tool it affects. I also learned that balancing how concise a method is with clarity of the name itself is important, names should be concise but never ambiguous.
+
+Overall, **Chapter 2** reinforced that good naming is the foundation of clean, maintainable code. By carefully naming classes, methods, and variables, I can make my module much easier for other developers to understand and use correctly.
 
 # The longest method/function
 
@@ -148,7 +163,10 @@ The code above follows the **Do One Thing** rule, the only thing the method **se
   }
   ```
   
-  **2. Small Functions**
+**2. Small Functions**
+
 This method is short, but it currently mixes concerns, it both handles the mouse event and performs canvas drawing. According to **Chapter 3 of Clean Code**, each function should do one thing. Splitting this into helper methods such as startDrawing(event) and continueDrawing(event) would improve readability and maintainability for both the developer and the user.
+
+## Refelction of what I learnt by reading chapter 3
 
 # Reflection on the code quality
