@@ -167,6 +167,38 @@ The code above follows the **Do One Thing** rule, the only thing the method **se
 
 This method is short, but it currently mixes concerns, it both handles the mouse event and performs canvas drawing. According to **Chapter 3 of Clean Code**, each function should do one thing. Splitting this into helper methods such as startDrawing(event) and continueDrawing(event) would improve readability and maintainability for both the developer and the user.
 
+
+    ```js
+
+    /**
+     * Swaps the currently selected tool and updates the active button UI.
+     *
+     * Removes the 'active' class from all tool buttons, adds it to the clicked button,
+     * and sets the current tool to the specified tool name.
+     *
+     * @param {string} toolname - The name of the tool to activate.
+     * @param {HTMLElement} buttonClicked - The button element that was clicked.
+     */
+    swapTool (toolname, buttonClicked) {
+      this.shadowRoot.querySelectorAll('.toolButton').forEach(button =>
+        button.classList.remove('active')
+      )
+
+      buttonClicked.classList.add('active')
+
+      this.#currentTool = toolname
+      console.log('Current tool is', this.#currentTool)
+      if (this.#currentTool === 'pen') {
+        this.#colorPicker.classList.remove('hidden')
+        this.#penSizePicker.classList.remove('hidden')
+      }
+    }
+    ```
+**3. Use descriptive names**
+
+The code above follows the **Use descriptive names** rule, the method **swapTool** has a descriptive name, this function only handles the logic with the tool swapping. This method also handles the logic of hiding different elements that should not be available at a specific time. For example, this method removes the class **hidden** from the color swap section whenever the pen is active so that the use can swap the color of the pen.  
+
+
 ## Refelction of what I learnt by reading chapter 3
 
 # Reflection on the code quality

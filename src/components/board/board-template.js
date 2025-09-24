@@ -7,7 +7,7 @@ template.innerHTML = `
 
 <div id='canvasContainer'>
     
-<canvas id="myCanvas" width="600" height="400">
+<canvas id="myCanvas" width="600" height="600">
 </canvas>
 
 <div id='heightWidthChangeContainer'>
@@ -31,6 +31,7 @@ template.innerHTML = `
     <button id='greenButton' class='colorButton' data-color='green'> </button>
     <button id='redButton' class='colorButton' data-color='red'> </button>
     <button id='yellowButton' class='colorButton' data-color='yellow'> </button>
+    <button id='orangeButton' class='colorButton' data-color='orange'> </button>
     </div>
 
     <div id='penSizePicker' class='hidden'> 
@@ -74,6 +75,9 @@ template.innerHTML = `
 }
 #yellowButton {
     background-color: #eeff00ff;
+}
+#orangeButton {
+    background-color: #ffbb00ff;
 }
 
 .colorButton:focus, .colorButton:hover {

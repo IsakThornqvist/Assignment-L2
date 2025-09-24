@@ -66,7 +66,7 @@ customElements.define('my-board',
       this.#clearCanvasButton.addEventListener('click', () => {
         console.log('canvas cleared')
         const context = this.#canvas.getContext('2d')
-        context.clearRect(0, 0, this.#canvas.height, this.#canvas.width)
+        context.clearRect(0, 0, this.#canvas.width, this.#canvas.height)
       })
     }
 
