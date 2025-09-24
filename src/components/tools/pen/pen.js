@@ -3,6 +3,8 @@
  */
 export class PenTool {
   /**
+   * Creates an instance of PenTool.
+   *
    * @param {CanvasRenderingContext2D} canvasContext - The 2D context of the canvas to draw on.
    */
   constructor (canvasContext) {

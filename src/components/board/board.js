@@ -19,6 +19,7 @@ customElements.define('my-board',
     #heightButton
     #colorPicker
     #penSizePicker
+    #clearCanvasButton
 
     /**
      * Initializes the board component, sets up shadow DOM, and prepares tool and canvas references.
@@ -36,6 +37,7 @@ customElements.define('my-board',
       this.#heightButton = this.shadowRoot.querySelector('#heightButton')
       this.#colorPicker = this.shadowRoot.querySelector('#colorPicker')
       this.#penSizePicker = this.shadowRoot.querySelector('#penSizePicker')
+      this.#clearCanvasButton = this.shadowRoot.querySelector('#clearCanvasButton')
 
       this.#pen = new PenTool(this.#canvas.getContext('2d'))
       this.#eraser = new EraseTool(this.#canvas.getContext('2d'))
@@ -54,6 +56,18 @@ customElements.define('my-board',
       this.setWidthAndHeight()
       this.pickColor()
       this.pickSize()
+      this.clearCanvas()
+    }
+
+    /**
+     * Sets up the event listener for the clear canvas button to clear the canvas when clicked.
+     */
+    clearCanvas () {
+      this.#clearCanvasButton.addEventListener('click', () => {
+        console.log('canvas cleared')
+        const context = this.#canvas.getContext('2d')
+        context.clearRect(0, 0, this.#canvas.height, this.#canvas.width)
+      })
     }
 
     /**

@@ -15,6 +15,7 @@ template.innerHTML = `
 <button id='widthButton' type='submit'> Change Width </button>
 <input id='heightInput' placeholder='Set height'></input>
 <button id='heightButton' type='submit'> Change Height </button>
+<button id='clearCanvasButton'>Clear canvas</button>
 </div>
 
 <div id='toolBar'>
