@@ -90,7 +90,7 @@ This setup is straightforward to extend — I can either add more predefined but
 
 # Naming Analysis
 
-| Name | Explaination | Reflection |
+| Name | Explanation | Reflection |
 |------|------------|--------------------------------------|
 | `my-board` | The name of the custom-element that will be used in the html to show the component | **Use Intention-Revealing Names:** The name clearly represents what the customelement represents which is the board itself, I could probably be even more specific and call it something like 'drawing board' but I think the name I gave it is good enough and most people will understand the meaning of it. |
 | `PenTool` | Class name for the tool that handles drawing freehand lines on the canvas. | **Classes and Objects Should Have Noun or Noun Phrase Names:** The name correctly uses a noun that reflects its role. It reveals the intent of the class (a pen-like drawing tool). One improvement could be dropping the suffix “Tool” since the module already exists in a /tools/ directory, which makes it redundant. |
@@ -169,7 +169,6 @@ This method is short, but it currently mixes concerns, it both handles the mouse
 
 
     ```js
-
     /**
      * Swaps the currently selected tool and updates the active button UI.
      *
@@ -199,6 +198,7 @@ This method is short, but it currently mixes concerns, it both handles the mouse
 The code above follows the **Use descriptive names** rule, the method **swapTool** has a descriptive name, this function only handles the logic with the tool swapping. This method also handles the logic of hiding different elements that should not be available at a specific time. For example, this method removes the class **hidden** from the color swap section whenever the pen is active so that the use can swap the color of the pen.  
 
 
-## Refelction of what I learnt by reading chapter 3
+## Reflection of what I learnt by reading chapter 3
+While reading Chapter 3 of **Clean Code**, I gained a deeper understanding of the importance of writing small and focused functions that each do one thing. This chapter reinforced the idea that clarity and maintainability improve dramatically when functions are concise and responsibilities are clearly separated between functions.
 
 # Reflection on the code quality

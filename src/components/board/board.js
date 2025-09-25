@@ -51,18 +51,18 @@ customElements.define('my-board',
     connectedCallback () {
       console.log('my-board added')
 
-      this.setupToolButtons()
-      this.setupPenEvents()
-      this.setWidthAndHeight()
-      this.pickColor()
-      this.pickSize()
-      this.clearCanvas()
+      this.#setupToolButtons()
+      this.#setupPenEvents()
+      this.#setWidthAndHeight()
+      this.#pickColor()
+      this.#pickSize()
+      this.#clearCanvas()
     }
 
     /**
      * Sets up the event listener for the clear canvas button to clear the canvas when clicked.
      */
-    clearCanvas () {
+    #clearCanvas () {
       this.#clearCanvasButton.addEventListener('click', () => {
         console.log('canvas cleared')
         const context = this.#canvas.getContext('2d')
@@ -76,10 +76,10 @@ customElements.define('my-board',
      *
      * @private
      */
-    setupPenEvents () {
-      this.#canvas.addEventListener('mousedown', e => this.handleMouseDown(e))
-      this.#canvas.addEventListener('mouseup', e => this.handleMouseUp(e))
-      this.#canvas.addEventListener('mousemove', e => this.handleMouseMove(e))
+    #setupPenEvents () {
+      this.#canvas.addEventListener('mousedown', e => this.#handleMouseDown(e))
+      this.#canvas.addEventListener('mouseup', e => this.#handleMouseUp(e))
+      this.#canvas.addEventListener('mousemove', e => this.#handleMouseMove(e))
     }
 
     /**
@@ -87,10 +87,10 @@ customElements.define('my-board',
      * within the component's shadow DOM. When a button is clicked, it calls
      * the swapTool method with the tool type and button element.
      */
-    setupToolButtons () {
+    #setupToolButtons () {
       this.shadowRoot.querySelectorAll('.toolButton').forEach(button => {
         button.addEventListener('click', () => {
-          this.swapTool(button.dataset.tool, button)
+          this.#swapTool(button.dataset.tool, button)
         })
       })
     }
@@ -98,7 +98,7 @@ customElements.define('my-board',
     /**
      * Sets up event listeners for color buttons to change the pen color.
      */
-    pickColor () {
+    #pickColor () {
       this.#colorPicker.querySelectorAll('.colorButton').forEach(button => {
         button.addEventListener('click', () => {
           const color = button.getAttribute('data-color')
@@ -111,7 +111,7 @@ customElements.define('my-board',
     /**
      * Sets up event listeners for pen size buttons to change the pen size.
      */
-    pickSize () {
+    #pickSize () {
       this.#penSizePicker.querySelectorAll('.sizeButton').forEach(button => {
         button.addEventListener('click', () => {
           const size = parseInt(button.getAttribute('data-size'), 10)
@@ -130,7 +130,7 @@ customElements.define('my-board',
      * @param {string} toolname - The name of the tool to activate.
      * @param {HTMLElement} buttonClicked - The button element that was clicked.
      */
-    swapTool (toolname, buttonClicked) {
+    #swapTool (toolname, buttonClicked) {
       this.shadowRoot.querySelectorAll('.toolButton').forEach(button =>
         button.classList.remove('active')
       )
@@ -151,14 +151,12 @@ customElements.define('my-board',
      *
      * @param {MouseEvent} e - The mouse up event object.
      */
-    handleMouseUp (e) {
-      this.#canvas.addEventListener('mouseup', e => {
-        if (this.#currentTool === 'pen') {
-          this.#pen.handleMouseUp(e)
-        } else if (this.#currentTool === 'eraser') {
-          this.#eraser.handleMouseUp(e)
-        }
-      })
+    #handleMouseUp (e) {
+      if (this.#currentTool === 'pen') {
+        this.#pen.handleMouseUp(e)
+      } else if (this.#currentTool === 'eraser') {
+        this.#eraser.handleMouseUp(e)
+      }
     }
 
     /**
@@ -168,14 +166,12 @@ customElements.define('my-board',
      *
      * @param {MouseEvent} e - The mouse down event object.
      */
-    handleMouseDown (e) {
-      this.#canvas.addEventListener('mousedown', e => {
-        if (this.#currentTool === 'pen') {
-          this.#pen.handleMouseDown(e)
-        } else if (this.#currentTool === 'eraser') {
-          this.#eraser.handleMouseDown(e)
-        }
-      })
+    #handleMouseDown (e) {
+      if (this.#currentTool === 'pen') {
+        this.#pen.handleMouseDown(e)
+      } else if (this.#currentTool === 'eraser') {
+        this.#eraser.handleMouseDown(e)
+      }
     }
 
     /**
@@ -184,20 +180,18 @@ customElements.define('my-board',
      *
      * @param {MouseEvent} e - The mousemove event object.
      */
-    handleMouseMove (e) {
-      this.#canvas.addEventListener('mousemove', e => {
-        if (this.#currentTool === 'pen') {
-          this.#pen.handleMouseMove(e)
-        } else if (this.#currentTool === 'eraser') {
-          this.#eraser.handleMouseMove(e)
-        }
-      })
+    #handleMouseMove (e) {
+      if (this.#currentTool === 'pen') {
+        this.#pen.handleMouseMove(e)
+      } else if (this.#currentTool === 'eraser') {
+        this.#eraser.handleMouseMove(e)
+      }
     }
 
     /**
      * Sets up event listeners for width and height buttons to update the canvas size.
      */
-    setWidthAndHeight () {
+    #setWidthAndHeight () {
       this.#widthButton.addEventListener('click', () => {
         const widthValue = this.#widthInput.value
         if (!isNaN(widthValue)) {
