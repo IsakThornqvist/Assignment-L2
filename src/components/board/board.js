@@ -251,4 +251,11 @@ customElements.define('my-board',
         console.log(`Height height changed via interface to ${height}`)
       }
     }
+
+    setColorsThroughMethodCall (color1, color2, color3, color4, color5, color6, color7) {
+    }
+
+    setPenSizesThroughMethodCalls (smallSize, mediumSize, bigSize) {
+
+    }
   })

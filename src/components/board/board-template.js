@@ -27,12 +27,14 @@ template.innerHTML = `
 </div>
 
 <div id='colorPicker' class='hidden'> 
-    <button id='blueButton' class='colorButton' data-color='blue'> </button>
-    <button id='greenButton' class='colorButton' data-color='green'> </button>
-    <button id='redButton' class='colorButton' data-color='red'> </button>
-    <button id='yellowButton' class='colorButton' data-color='yellow'> </button>
-    <button id='orangeButton' class='colorButton' data-color='orange'> </button>
-    </div>
+    <button id='colorOne' class='colorButton' data-color='blue'> </button>
+    <button id='colorTwo' class='colorButton' data-color='green'> </button>
+    <button id='colorThree' class='colorButton' data-color='red'> </button>
+    <button id='colorFour' class='colorButton' data-color='yellow'> </button>
+    <button id='colorFive' class='colorButton' data-color='orange'> </button>
+    <button id='colorSix' class='colorButton' data-color='orange'> </button>
+    <button id='colorSeven' class='colorButton' data-color='orange'> </button>
+</div>
 
     <div id='penSizePicker' class='hidden'> 
     <button class='sizeButton' data-size='2'>Small</button>
@@ -64,19 +66,19 @@ template.innerHTML = `
     display: inline-block;
 }
 
-#greenButton {
+#colorOne {
     background-color: #15ff00ff;
 }
-#blueButton {
+#colorTwo {
     background-color: #2563eb;
 }
-#redButton {
+#colorThree {
     background-color: #ff0000ff;
 }
-#yellowButton {
+#colorFour {
     background-color: #eeff00ff;
 }
-#orangeButton {
+#colorFive {
     background-color: #ffbb00ff;
 }
 
