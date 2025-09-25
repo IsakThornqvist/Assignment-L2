@@ -20,6 +20,8 @@ customElements.define('my-board',
     #colorPicker
     #penSizePicker
     #clearCanvasButton
+    #heightWidthContainer
+    #toolBar
 
     /**
      * Initializes the board component, sets up shadow DOM, and prepares tool and canvas references.
@@ -38,6 +40,8 @@ customElements.define('my-board',
       this.#colorPicker = this.shadowRoot.querySelector('#colorPicker')
       this.#penSizePicker = this.shadowRoot.querySelector('#penSizePicker')
       this.#clearCanvasButton = this.shadowRoot.querySelector('#clearCanvasButton')
+      this.#heightWidthContainer = this.shadowRoot.querySelector('#heightWidthChangeContainer')
+      this.#toolBar = this.shadowRoot.querySelector('#toolBar')
 
       this.#pen = new PenTool(this.#canvas.getContext('2d'))
       this.#eraser = new EraseTool(this.#canvas.getContext('2d'))
@@ -207,5 +211,44 @@ customElements.define('my-board',
           console.log(`Height changed to ${heightValue} px`)
         }
       })
+    }
+
+    // Methods that you can call in index.js to change the board
+
+    /**
+     * Sets the canvas size programmatically and hides the width/height input container.
+     *
+     * Hides the input fields and buttons for changing the height
+     *
+     * @param {number} width - The new width for the canvas.
+     * @param {number} height - The new height for the canvas.
+     */
+    setCanvasSizeThroughMethodCall (width, height) {
+      this.#heightWidthContainer.style.display = 'none'
+      const widthValue = width
+      if (!isNaN(widthValue)) {
+        this.#canvas.width = widthValue
+        console.log(`Width changed via interface to ${width}`)
+      }
+
+      const heightValue = height
+      if (!isNaN(heightValue)) {
+        this.#canvas.height = heightValue
+        console.log(`Height changed via interface to ${height}`)
+      }
+    }
+
+    setToolBarSizeThroughMethodCall (width, height) {
+      const widthValue = width
+      if (!isNaN(widthValue)) {
+        this.#toolBar.width = widthValue
+        console.log(`Width of toolBar changed via interface to ${width}`)
+      }
+
+      const heightValue = height
+      if (!isNaN(heightValue)) {
+        this.#toolBar.height = heightValue
+        console.log(`Height height changed via interface to ${height}`)
+      }
     }
   })
