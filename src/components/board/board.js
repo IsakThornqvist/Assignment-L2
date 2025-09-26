@@ -22,6 +22,13 @@ customElements.define('my-board',
     #clearCanvasButton
     #heightWidthContainer
     #toolBar
+    #colorOne
+    #colorTwo
+    #colorThree
+    #colorFour
+    #colorFive
+    #colorSix
+    #colorSeven
 
     /**
      * Initializes the board component, sets up shadow DOM, and prepares tool and canvas references.
@@ -42,6 +49,13 @@ customElements.define('my-board',
       this.#clearCanvasButton = this.shadowRoot.querySelector('#clearCanvasButton')
       this.#heightWidthContainer = this.shadowRoot.querySelector('#heightWidthChangeContainer')
       this.#toolBar = this.shadowRoot.querySelector('#toolBar')
+      this.#colorOne = this.shadowRoot.querySelector('#colorOne')
+      this.#colorTwo = this.shadowRoot.querySelector('#colorTwo')
+      this.#colorThree = this.shadowRoot.querySelector('#colorThree')
+      this.#colorFour = this.shadowRoot.querySelector('#colorFour')
+      this.#colorFive = this.shadowRoot.querySelector('#colorFive')
+      this.#colorSix = this.shadowRoot.querySelector('#colorSix')
+      this.#colorSeven = this.shadowRoot.querySelector('#colorSeven')
 
       this.#pen = new PenTool(this.#canvas.getContext('2d'))
       this.#eraser = new EraseTool(this.#canvas.getContext('2d'))
@@ -238,7 +252,7 @@ customElements.define('my-board',
       }
     }
 
-    setToolBarSizeThroughMethodCall (width, height) {
+/*     setToolBarSizeThroughMethodCall (width, height) {
       const widthValue = width
       if (!isNaN(widthValue)) {
         this.#toolBar.width = widthValue
@@ -250,9 +264,22 @@ customElements.define('my-board',
         this.#toolBar.height = heightValue
         console.log(`Height height changed via interface to ${height}`)
       }
-    }
+    } */
 
-    setColorsThroughMethodCall (color1, color2, color3, color4, color5, color6, color7) {
+    /**
+     * Sets the background color and data-color attribute for each color button in the color picker.
+     * Used for the programmatic interface to change the colors through calling a method.
+     *
+     * @param {...string} colors - The colors to set for the color buttons via the setColorsThroughMethodCall.
+     */
+    setColorsThroughMethodCall (...colors) {
+      const buttons = this.#colorPicker.querySelectorAll('.colorButton')
+      colors.forEach((color, index) => {
+        if (buttons[index]) {
+          buttons[index].style.backgroundColor = color
+          buttons[index].setAttribute('data-color', color)
+        }
+      })
     }
 
     setPenSizesThroughMethodCalls (smallSize, mediumSize, bigSize) {
