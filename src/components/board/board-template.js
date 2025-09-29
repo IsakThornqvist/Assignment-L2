@@ -66,21 +66,7 @@ template.innerHTML = `
     display: inline-block;
 }
 
-#colorOne {
-    background-color: #15ff00ff;
-}
-#colorTwo {
-    background-color: #2563eb;
-}
-#colorThree {
-    background-color: #ff0000ff;
-}
-#colorFour {
-    background-color: #eeff00ff;
-}
-#colorFive {
-    background-color: #ffbb00ff;
-}
+
 
 .colorButton:focus, .colorButton:hover {
     border-color: #2563eb;

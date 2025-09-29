@@ -22,13 +22,6 @@ customElements.define('my-board',
     #clearCanvasButton
     #heightWidthContainer
     #toolBar
-    #colorOne
-    #colorTwo
-    #colorThree
-    #colorFour
-    #colorFive
-    #colorSix
-    #colorSeven
 
     /**
      * Initializes the board component, sets up shadow DOM, and prepares tool and canvas references.
@@ -49,13 +42,6 @@ customElements.define('my-board',
       this.#clearCanvasButton = this.shadowRoot.querySelector('#clearCanvasButton')
       this.#heightWidthContainer = this.shadowRoot.querySelector('#heightWidthChangeContainer')
       this.#toolBar = this.shadowRoot.querySelector('#toolBar')
-      this.#colorOne = this.shadowRoot.querySelector('#colorOne')
-      this.#colorTwo = this.shadowRoot.querySelector('#colorTwo')
-      this.#colorThree = this.shadowRoot.querySelector('#colorThree')
-      this.#colorFour = this.shadowRoot.querySelector('#colorFour')
-      this.#colorFive = this.shadowRoot.querySelector('#colorFive')
-      this.#colorSix = this.shadowRoot.querySelector('#colorSix')
-      this.#colorSeven = this.shadowRoot.querySelector('#colorSeven')
 
       this.#pen = new PenTool(this.#canvas.getContext('2d'))
       this.#eraser = new EraseTool(this.#canvas.getContext('2d'))
@@ -273,16 +259,27 @@ customElements.define('my-board',
      * @param {...string} colors - The colors to set for the color buttons via the setColorsThroughMethodCall.
      */
     setColorsThroughMethodCall (...colors) {
-      const buttons = this.#colorPicker.querySelectorAll('.colorButton')
+      const colorButton = this.#colorPicker.querySelectorAll('.colorButton')
       colors.forEach((color, index) => {
-        if (buttons[index]) {
-          buttons[index].style.backgroundColor = color
-          buttons[index].setAttribute('data-color', color)
+        if (colorButton[index]) {
+          colorButton[index].style.backgroundColor = color
+          colorButton[index].setAttribute('data-color', color)
         }
       })
     }
 
-    setPenSizesThroughMethodCalls (smallSize, mediumSize, bigSize) {
-
+    /**
+     * Sets the pen sizes for each size button in the pen size picker.
+     * Used for the programmatic interface to change the pen sizes by calling a method.
+     *
+     * @param {...number} sizes - The sizes to set for the pen size buttons.
+     */
+    setPenSizesThroughMethodCalls (...sizes) {
+      const penSizeButton = this.#penSizePicker.querySelectorAll('.sizeButton')
+      sizes.forEach((size, index) => {
+        if (penSizeButton[index]) {
+          penSizeButton[index].setAttribute('data-size', size)
+        }
+      })
     }
   })
