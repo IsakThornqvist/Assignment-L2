@@ -24,23 +24,24 @@ template.innerHTML = `
     <button class='toolButton' data-tool='pen'id='penButton'> Pen</button>
     <button class='toolButton' data-tool='eraser'id='eraserButton'> Eraser</button>
     <button class='toolButton' data-tool='shapes'id='shapesButton'> Shapes</button>
-</div>
-
-<div id='colorPicker' class='hidden'> 
-    <button id='colorOne' class='colorButton' data-color='blue'> </button>
-    <button id='colorTwo' class='colorButton' data-color='green'> </button>
-    <button id='colorThree' class='colorButton' data-color='red'> </button>
-    <button id='colorFour' class='colorButton' data-color='yellow'> </button>
-    <button id='colorFive' class='colorButton' data-color='orange'> </button>
-    <button id='colorSix' class='colorButton' data-color='orange'> </button>
-    <button id='colorSeven' class='colorButton' data-color='orange'> </button>
-</div>
-
+    <div id='colorPicker' class='hidden'> 
+        <button id='colorOne' class='colorButton' data-color='blue'> </button>
+        <button id='colorTwo' class='colorButton' data-color='green'> </button>
+        <button id='colorThree' class='colorButton' data-color='red'> </button>
+        <button id='colorFour' class='colorButton' data-color='yellow'> </button>
+        <button id='colorFive' class='colorButton' data-color='orange'> </button>
+        <button id='colorSix' class='colorButton' data-color='orange'> </button>
+        <button id='colorSeven' class='colorButton' data-color='orange'> </button>
+        <button id='colorEight' class='colorButton' data-color='orange'> </button>
+    </div>
     <div id='penSizePicker' class='hidden'> 
     <button class='sizeButton' data-size='2'>Small</button>
     <button class='sizeButton' data-size='5'>Medium</button>
     <button class='sizeButton' data-size='10'>Big</button>
     </div>
+</div>
+
+
 
 </div>
 

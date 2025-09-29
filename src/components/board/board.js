@@ -57,16 +57,16 @@ customElements.define('my-board',
 
       this.#setupToolButtons()
       this.#setupPenEvents()
-      this.#setWidthAndHeight()
-      this.#pickColor()
-      this.#pickSize()
-      this.#clearCanvas()
+      this.#setupSetWidthAndHeight()
+      this.#setupColorPicker()
+      this.#setupPenSizePicker()
+      this.#setupClearCanvas()
     }
 
     /**
      * Sets up the event listener for the clear canvas button to clear the canvas when clicked.
      */
-    #clearCanvas () {
+    #setupClearCanvas () {
       this.#clearCanvasButton.addEventListener('click', () => {
         console.log('canvas cleared')
         const context = this.#canvas.getContext('2d')
@@ -102,7 +102,7 @@ customElements.define('my-board',
     /**
      * Sets up event listeners for color buttons to change the pen color.
      */
-    #pickColor () {
+    #setupColorPicker () {
       this.#colorPicker.querySelectorAll('.colorButton').forEach(button => {
         button.addEventListener('click', () => {
           const color = button.getAttribute('data-color')
@@ -115,7 +115,7 @@ customElements.define('my-board',
     /**
      * Sets up event listeners for pen size buttons to change the pen size.
      */
-    #pickSize () {
+    #setupPenSizePicker () {
       this.#penSizePicker.querySelectorAll('.sizeButton').forEach(button => {
         button.addEventListener('click', () => {
           const size = parseInt(button.getAttribute('data-size'), 10)
@@ -195,7 +195,7 @@ customElements.define('my-board',
     /**
      * Sets up event listeners for width and height buttons to update the canvas size.
      */
-    #setWidthAndHeight () {
+    #setupSetWidthAndHeight () {
       this.#widthButton.addEventListener('click', () => {
         const widthValue = this.#widthInput.value
         if (!isNaN(widthValue)) {
@@ -223,7 +223,7 @@ customElements.define('my-board',
      * @param {number} width - The new width for the canvas.
      * @param {number} height - The new height for the canvas.
      */
-    setCanvasSizeThroughMethodCall (width, height) {
+    setCanvasSize (width, height) {
       this.#heightWidthContainer.style.display = 'none'
       const widthValue = width
       if (!isNaN(widthValue)) {
@@ -258,7 +258,7 @@ customElements.define('my-board',
      *
      * @param {...string} colors - The colors to set for the color buttons via the setColorsThroughMethodCall.
      */
-    setColorsThroughMethodCall (...colors) {
+    setPenColor (...colors) {
       const colorButton = this.#colorPicker.querySelectorAll('.colorButton')
       colors.forEach((color, index) => {
         if (colorButton[index]) {
@@ -274,7 +274,7 @@ customElements.define('my-board',
      *
      * @param {...number} sizes - The sizes to set for the pen size buttons.
      */
-    setPenSizesThroughMethodCalls (...sizes) {
+    setPenSize (...sizes) {
       const penSizeButton = this.#penSizePicker.querySelectorAll('.sizeButton')
       sizes.forEach((size, index) => {
         if (penSizeButton[index]) {
