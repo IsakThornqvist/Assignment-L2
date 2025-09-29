@@ -82,7 +82,7 @@ The first thing that I tested was the structure of the customelement **my-board*
 **Expected Results:**
 1. The penTool should be able to change colors
 
-### TC6 Test changing pen size
+### TC7 Test changing pen size
 **Use Case:** Change the size of the **penTool**
 
 **Scenario:** Size of the pen changes
@@ -101,7 +101,7 @@ The first thing that I tested was the structure of the customelement **my-board*
 2. The left most lines should be the smallest
 3. The middle lines should be bigger than the left most lines but smaller that the lines on the right
 
-### TC6 Test the Clear Canvas button
+### TC8 Test the Clear Canvas button
 **Use Case:** Clearing the canvas via the **Clear Canvas** button
 
 **Scenario:** Clear paint of the canvas using the Clear Canvas button
@@ -114,5 +114,75 @@ The first thing that I tested was the structure of the customelement **my-board*
 
 **Expected Results:**
 1. When the **Clear Canvas** button is clicked the circle you drew earlier should be removed and the entire canvas should be cleared
+
+### TC9 Test tool switching
+**Use Case:** Swap between pen and eraser tools using the toolbar
+
+**Scenario:** Switch tools successfully
+
+**Test Steps:**
+1. Select the pen tool from the toolbar.
+2. Draw some lines on the canvas.
+3. Switch to the eraser tool from the toolbar.
+4. Attempt to erase parts of the previously drawn lines.
+5. Switch back to the pen tool and continue drawing.
+
+**Expected Results:**
+1. Toolbar highlights the active tool correctly.
+2. Pen tool draws lines as expected.
+3. Eraser tool removes pixels correctly.
+4. Switching tools does not break the functionality.
+
+### TC10 Test programmatic canvas resizing
+**Use Case:** Resize the canvas via `setCanvasSize`
+
+**Scenario:** Programmatic resizing works
+
+**Test Steps:**
+1. Call in in the index.js call:
+   ```js
+   board.setCanvasSize(600, 400)
+   ```
+
+2. Watch the canvas change size
+
+**Expected Results:**
+1. Canvas width is 600px
+2. Canvas height is 400px
+3. Canvas is cleared after resizing
+
+### TC11 Test programmatic pen color changes
+**Use Case:** Change pen colors via `setPenColor`
+
+**Scenario:** Colors are updated programmatically
+
+**Test Steps:**
+1. Call in the index.js or console:
+   ```js
+   board.setPenColor('red', 'green', 'blue')
+   ```
+
+2. Activate the pen by clicking the **pen**
+
+**Expected Results:**
+1. Once only 3 colors is set the first 3 colors from the right should be red, green, blue in that order
+2. The rest of the colors should be white boxes to indicate that no color is set for them yet
+
+### TC12 Test programmatic pen size changes
+**Use Case:** Change pen sizes via `setPenSize`
+
+**Scenario:** Sizes are updated programmatically
+
+**Test Steps:**
+1. Call in the index.js or console:
+   ```js
+   board.setPenSize(2, 5, 10)
+
+2. Observe the pen size buttons in the interface.
+3. Draw on the canvas using each size.
+
+**Expected Results:**
+1. Size buttons reflect the new values.
+2. Drawing uses the correct thickness for each size.
 
 
