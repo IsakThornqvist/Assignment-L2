@@ -22,6 +22,7 @@ customElements.define('my-board',
     #clearCanvasButton
     #heightWidthContainer
     #toolBar
+    #penControls
 
     /**
      * Initializes the board component, sets up shadow DOM, and prepares tool and canvas references.
@@ -42,6 +43,7 @@ customElements.define('my-board',
       this.#clearCanvasButton = this.shadowRoot.querySelector('#clearCanvasButton')
       this.#heightWidthContainer = this.shadowRoot.querySelector('#heightWidthChangeContainer')
       this.#toolBar = this.shadowRoot.querySelector('#toolBar')
+      this.#penControls = this.shadowRoot.querySelector('#penControls')
 
       this.#pen = new PenTool(this.#canvas.getContext('2d'))
       this.#eraser = new EraseTool(this.#canvas.getContext('2d'))
@@ -138,14 +140,13 @@ customElements.define('my-board',
       this.shadowRoot.querySelectorAll('.toolButton').forEach(button =>
         button.classList.remove('active')
       )
-
       buttonClicked.classList.add('active')
-
       this.#currentTool = toolname
-      console.log('Current tool is', this.#currentTool)
+      const penControls = this.#penControls
       if (this.#currentTool === 'pen') {
-        this.#colorPicker.classList.remove('hidden')
-        this.#penSizePicker.classList.remove('hidden')
+        penControls.classList.remove('hidden')
+      } else {
+        penControls.classList.add('hidden')
       }
     }
 
@@ -236,20 +237,6 @@ customElements.define('my-board',
         console.log(`Height changed via interface to ${height}`)
       }
     }
-
-/*     setToolBarSizeThroughMethodCall (width, height) {
-      const widthValue = width
-      if (!isNaN(widthValue)) {
-        this.#toolBar.width = widthValue
-        console.log(`Width of toolBar changed via interface to ${width}`)
-      }
-
-      const heightValue = height
-      if (!isNaN(heightValue)) {
-        this.#toolBar.height = heightValue
-        console.log(`Height height changed via interface to ${height}`)
-      }
-    } */
 
     /**
      * Sets the background color and data-color attribute for each color button in the color picker.

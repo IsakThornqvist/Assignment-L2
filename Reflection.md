@@ -119,7 +119,7 @@ Overall, **Chapter 2** reinforced that good naming is the foundation of clean, m
 # The longest method/function
 
 ```js
-setWidthAndHeight () {
+#setupSetWidthAndHeight () {
     this.#widthButton.addEventListener('click', () => {
         const widthValue = this.#widthInput.value
         if(!isNaN(widthValue)) {
@@ -141,7 +141,7 @@ setWidthAndHeight () {
 
 **1. Do One Thing**
 
-The code above follows the **Do One Thing** rule, the only thing the method **setWidthAndHeight** does is described in the name of the function, this function only handles the logic with setting the width and height of the canvas. 
+The code above follows the **Do One Thing** rule, the only thing the method **setupSetWidthAndHeight** does is described in the name of the function, this function only handles the logic with setting the width and height of the canvas. 
 
   ```js
   /**
@@ -150,7 +150,6 @@ The code above follows the **Do One Thing** rule, the only thing the method **se
    * @param {MouseEvent} event
    */
   draw (event) {
-    // Current pos
     const { offsetX, offsetY } = event
 
     this.canvasContext.strokeStyle = this.color
@@ -168,37 +167,85 @@ The code above follows the **Do One Thing** rule, the only thing the method **se
 This method is short, but it currently mixes concerns, it both handles the mouse event and performs canvas drawing. According to **Chapter 3 of Clean Code**, each function should do one thing. Splitting this into helper methods such as startDrawing(event) and continueDrawing(event) would improve readability and maintainability for both the developer and the user.
 
 
-    ```js
-    /**
-     * Swaps the currently selected tool and updates the active button UI.
-     *
-     * Removes the 'active' class from all tool buttons, adds it to the clicked button,
-     * and sets the current tool to the specified tool name.
-     *
-     * @param {string} toolname - The name of the tool to activate.
-     * @param {HTMLElement} buttonClicked - The button element that was clicked.
-     */
-    swapTool (toolname, buttonClicked) {
+  ```js
+  /**
+  * Swaps the currently selected tool and updates the active button UI.
+  *
+  * Removes the 'active' class from all tool buttons, adds it to the clicked button,
+  * and sets the current tool to the specified tool name.
+  *
+  * @param {string} toolname - The name of the tool to activate.
+  * @param {HTMLElement} buttonClicked - The button element that was clicked.
+  */
+  #swapTool (toolname, buttonClicked) {
       this.shadowRoot.querySelectorAll('.toolButton').forEach(button =>
         button.classList.remove('active')
       )
-
       buttonClicked.classList.add('active')
-
       this.#currentTool = toolname
-      console.log('Current tool is', this.#currentTool)
+      const penControls = this.#penControls
       if (this.#currentTool === 'pen') {
-        this.#colorPicker.classList.remove('hidden')
-        this.#penSizePicker.classList.remove('hidden')
+        penControls.classList.remove('hidden')
+      } else {
+        penControls.classList.add('hidden')
       }
     }
-    ```
+  ```
 **3. Use descriptive names**
 
 The code above follows the **Use descriptive names** rule, the method **swapTool** has a descriptive name, this function only handles the logic with the tool swapping. This method also handles the logic of hiding different elements that should not be available at a specific time. For example, this method removes the class **hidden** from the color swap section whenever the pen is active so that the use can swap the color of the pen.  
 
 
+  ```js
+    /**
+     * Sets the pen sizes for each size button in the pen size picker.
+     * Used for the programmatic interface to change the pen sizes by calling a method.
+     *
+     * @param {...number} sizes - The sizes to set for the pen size buttons.
+     */
+    setPenSize (...sizes) {
+      const penSizeButton = this.#penSizePicker.querySelectorAll('.sizeButton')
+      sizes.forEach((size, index) => {
+        if (penSizeButton[index]) {
+          penSizeButton[index].setAttribute('data-size', size)
+        }
+      })
+    }
+  ```
+
+  **4.Do One Thing**
+  The method **setPenSize** follows the **Do One Thing** principle because it focuses solely on updating the data-size attributes of the pen size buttons. It does not handle event listeners, drawing logic, or any other part of the pen tool functionality. Its single responsibility is to ensure that each size button correctly reflects the size values passed in.
+
+  ```js
+    /**
+     * Sets up event listeners for pen interactions on the canvas element.
+     * Handles mouse down, mouse up, and mouse move events to enable drawing functionality.
+     *
+     * @private
+     */
+    #setupPenEvents () {
+      this.#canvas.addEventListener('mousedown', e => this.#handleMouseDown(e))
+      this.#canvas.addEventListener('mouseup', e => this.#handleMouseUp(e))
+      this.#canvas.addEventListener('mousemove', e => this.#handleMouseMove(e))
+    }
+
+  ```
+
+  **5. Avoid disinformation**
+  For the method `#setupPenEvents` I tried my best to avoid disinformation by giving the private method a name that clearly indicates its purpose: setting up event listeners for pen interactions. The name accurately reflects what the method does and does not suggest that it handles drawing logic itself or other tool events. This ensures that anyone reading the code will understand its responsibility without being misled about its behavior or functionality.
+
+
+
 ## Reflection of what I learnt by reading chapter 3
-While reading Chapter 3 of **Clean Code**, I gained a deeper understanding of the importance of writing small and focused functions that each do one thing. This chapter reinforced the idea that clarity and maintainability improve dramatically when functions are concise and responsibilities are clearly separated between functions.
+While reading Chapter 3 of **Clean Code**, I gained a deeper understanding of the importance of writing small and focused functions that each do one thing. This chapter reinforced the idea that clarity and maintainability improve dramatically when functions are concise and responsibilities are clearly separated between functions. Even before getting into the boon **Clean code** I tried to seperate the concers between methods but I feel like it has gotten to another level after learning from the material in the book.
 
 # Reflection on the code quality
+During this assignment, I have learned that writing clean code is not just about making code work it is also about making it understandable and maintainable for other developers. 
+
+The most important lesson from **Chapter 2 (Naming)** was that good names eliminate the need for comments. When I named my method `setColor`, I initially thought it was clear enough. But reflecting on it, `setPenColor` would have been even better since it explicitly states what is being colored. This small change makes a big difference in clarity.
+
+From **Chapter 3 (Functions)**, the "Do One Thing" principle was eye-opening. I realized that several of my methods, like `swapTool()`, were trying to do multiple things. While the code works, splitting responsibilities would make it easier to test and modify in the future.
+
+One area where I struggled was balancing abstraction with simplicity. I wanted to make the module flexible (hence methods like `setPenColor()` and `setPenSize()`), but I also needed to keep the implementation simple enough for others to understand. I think I found a reasonable balance, though there's always room for improvement.
+
+I am looking forward to making an app that uses my module. I now understand that clean code isn't about perfection it is about continuous improvement and clear communication. through the entire workflow and proccess. Every name, every function, and every abstraction is a form of documentation that helps other developers including myself to understand the intent and meaning of the code.
