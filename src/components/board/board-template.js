@@ -2,249 +2,291 @@ export const template = document.createElement('template')
 
 template.innerHTML = `
 <div id='boardContainer'>
-
-<p> The-Board </p>
-
-<div id='canvasContainer'>
-    
-<canvas id="myCanvas" width="600" height="600">
-</canvas>
-
-<div id='heightWidthChangeContainer'>
-<input id='widthInput' placeholder='Set width'></input>
-<button id='widthButton' type='submit'> Change Width </button>
-<input id='heightInput' placeholder='Set height'></input>
-<button id='heightButton' type='submit'> Change Height </button>
-<button id='clearCanvasButton'>Clear canvas</button>
-</div>
-
-<div id='toolBar'>
-    <h1>Tools</h1>
-    <button class='toolButton active' data-tool='none' id='noneButton'> None</button>
-    <button class='toolButton' data-tool='pen'id='penButton'> Pen</button>
-    <button class='toolButton' data-tool='eraser'id='eraserButton'> Eraser</button>
-    <button class='toolButton' data-tool='shapes'id='shapesButton'> Shapes</button>
-    <div id='colorPicker' class='hidden'> 
-        <button id='colorOne' class='colorButton' data-color='blue'> </button>
-        <button id='colorTwo' class='colorButton' data-color='green'> </button>
-        <button id='colorThree' class='colorButton' data-color='red'> </button>
-        <button id='colorFour' class='colorButton' data-color='yellow'> </button>
-        <button id='colorFive' class='colorButton' data-color='orange'> </button>
-        <button id='colorSix' class='colorButton' data-color='orange'> </button>
-        <button id='colorSeven' class='colorButton' data-color='orange'> </button>
-        <button id='colorEight' class='colorButton' data-color='orange'> </button>
+    <div id='header'>
+        <h1>The Board</h1>
+        <button id='clearCanvasButton'>Clear Canvas</button>
     </div>
-    <div id='penSizePicker' class='hidden'> 
-    <button class='sizeButton' data-size='2'>Small</button>
-    <button class='sizeButton' data-size='5'>Medium</button>
-    <button class='sizeButton' data-size='10'>Big</button>
+
+    <div id='mainContent'>
+        <div id='toolBar'>
+            <h2>Tools</h2>
+            <button class='toolButton active' data-tool='none'>None</button>
+            <button class='toolButton' data-tool='pen'>Pen</button>
+            <button class='toolButton' data-tool='eraser'>Eraser</button>
+            <button class='toolButton' data-tool='shapes'>Shapes</button>
+
+            <div id='penControls' class='hidden'>
+                <h3>Pen Settings</h3>
+                
+                <label>Color</label>
+                <div id='colorPicker'>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                </div>
+
+                <label>Pen Size</label>
+                <div id='penSizePicker'>
+                    <button class='sizeButton' data-size='2'>Small</button>
+                    <button class='sizeButton' data-size='5'>Medium</button>
+                    <button class='sizeButton' data-size='10'>Large</button>
+                </div>
+            </div>
+        </div>
+
+        <div id='canvasContainer'>
+            <canvas id="myCanvas" width="500" height="500"></canvas>
+        </div>
+
+        <div id='heightWidthChangeContainer'>
+            <h3>Canvas Size</h3>
+            <label>Width</label>
+            <input id='widthInput' type='number' placeholder='500'>
+            <button id='widthButton'>Set</button>
+            
+            <label>Height</label>
+            <input id='heightInput' type='number' placeholder='500'>
+            <button id='heightButton'>Set</button>
+        </div>
     </div>
 </div>
-
-
-
-</div>
-
-</div>
-
 
 <style>
-
-    .hidden {
-        display: none;
-    }
-
-.colorButton {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid #e5e7eb;
-    margin: 0 6px;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-    display: inline-block;
+.hidden {
+    display: none;
 }
 
-
-
-.colorButton:focus, .colorButton:hover {
-    border-color: #2563eb;
-    box-shadow: 0 4px 12px rgba(59,130,246,0.15);
-}
 #boardContainer {
-    background: #ffffff;
-    border-radius: 12px;
+    background: white;
     padding: 24px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e7eb;
-    max-width: 1200px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    max-width: 1400px;
     margin: 20px auto;
-    font-family: 'Segoe UI', sans-serif;
 }
 
-#boardContainer p {
-    font-size: 22px;
-    font-weight: 600;
-    color: #2563eb;
-    margin: 0 0 24px 0;
-    text-align: center;
-}
-
-#canvasContainer {
-    display: grid;
-    grid-template-columns: 1fr 180px;
-    grid-template-rows: auto 1fr;
-    gap: 20px;
-    grid-template-areas: 
-        "controls toolbar"
-        "canvas toolbar";
-}
-
-#myCanvas {
-    grid-area: canvas;
-    border: 2px solid #e5e7eb;
-    border-radius: 8px;
-    background: white;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-#myCanvas:hover {
-    border-color: #3b82f6;
-    box-shadow: 0 4px 10px rgba(59,130,246,0.15);
-    cursor: crosshair; 
-}
-
-#heightWidthChangeContainer {
-    grid-area: controls;
+#header {
     display: flex;
-    gap: 12px;
+    justify-content: space-between;
     align-items: center;
-    background: #f9fafb;
-    padding: 16px;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e5e7eb;
 }
 
-#widthInput, #heightInput {
-    padding: 8px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 14px;
-    background: white;
-    width: 100px;
-    transition: border-color 0.2s, box-shadow 0.2s;
+#header h1 {
+    font-size: 28px;
+    margin: 0;
+    color: #1e293b;
 }
 
-#widthInput:focus, #heightInput:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
-}
-
-#widthButton, #heightButton {
-    padding: 8px 16px;
-    background: #2563eb;
+#clearCanvasButton {
+    padding: 10px 20px;
+    background: #ef4444;
     color: white;
     border: none;
-    border-radius: 6px;
-    font-weight: 500;
-    font-size: 14px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s;
 }
 
-#widthButton:hover, #heightButton:hover {
-    background: #1e40af;
+#clearCanvasButton:hover {
+    background: #dc2626;
+}
+
+#mainContent {
+    display: grid;
+    grid-template-columns: 200px 1fr 220px;
+    gap: 24px;
 }
 
 #toolBar {
-    grid-area: toolbar;
-    background: #f9fafb;
-    border-radius: 8px;
-    padding: 16px;
-    border: 1px solid #e5e7eb;
-    height: fit-content;
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
 }
 
-#toolBar h1 {
+#toolBar h2 {
     margin: 0 0 16px 0;
-    color: #111827;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
+    font-size: 18px;
 }
 
 .toolButton {
     display: block;
     width: 100%;
+    padding: 12px;
     margin-bottom: 8px;
-    padding: 10px 12px;
-    border: 1px solid #d1d5db;
     background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 6px;
-    font-weight: 500;
-    font-size: 14px;
-    color: #374151;
     transition: all 0.2s;
 }
 
 .toolButton:hover {
     border-color: #3b82f6;
-    background: #f3f4f6;
-    color: #111827;
+    background: #eff6ff;
 }
 
 .toolButton.active {
     background: #2563eb;
     color: white;
     border-color: #2563eb;
-    box-shadow: 0 2px 6px rgba(59,130,246,0.25);
 }
 
-.toolButton:last-child {
-    margin-bottom: 0;
+#penControls {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
 }
 
-@media (max-width: 700px) {
-    #canvasContainer {
+#penControls h3 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+#penControls label {
+    display: block;
+    margin: 12px 0 8px 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+#colorPicker {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.colorButton {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.colorButton:hover {
+    border-color: #2563eb;
+    transform: scale(1.1);
+}
+
+#penSizePicker {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sizeButton {
+    padding: 8px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.sizeButton:hover {
+    border-color: #3b82f6;
+    background: #eff6ff;
+}
+
+#canvasContainer {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#myCanvas {
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    cursor: crosshair;
+}
+
+#myCanvas:hover {
+    border-color: #3b82f6;
+}
+
+#heightWidthChangeContainer {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+#heightWidthChangeContainer h3 {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+}
+
+#heightWidthChangeContainer label {
+    display: block;
+    margin: 12px 0 6px 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+#widthInput, #heightInput {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+
+#widthInput:focus, #heightInput:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+#widthButton, #heightButton {
+    width: 100%;
+    padding: 8px 16px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 12px;
+}
+
+#widthButton:hover, #heightButton:hover {
+    background: #1e40af;
+}
+
+@media (max-width: 900px) {
+    #mainContent {
         grid-template-columns: 1fr;
-        grid-template-areas: 
-            "controls"
-            "canvas"
-            "toolbar";
+    }
+    
+    #canvasContainer {
+        order: 1;
     }
     
     #toolBar {
-        display: flex;
-        gap: 8px;
-        overflow-x: auto;
-        padding: 12px;
+        order: 2;
     }
     
-    #toolBar h1 {
-        min-width: 60px;
-        margin: 0 12px 0 0;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-    }
-    
-    .toolButton {
-        margin-bottom: 0;
-        min-width: 70px;
-        white-space: nowrap;
-    }
-    
-    #boardContainer {
-        margin: 10px;
-        padding: 16px;
+    #heightWidthChangeContainer {
+        order: 3;
     }
 }
-
 </style>
-
 `

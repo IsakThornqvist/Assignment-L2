@@ -224,7 +224,6 @@ customElements.define('my-board',
      * @param {number} height - The new height for the canvas.
      */
     setCanvasSize (width, height) {
-      this.#heightWidthContainer.style.display = 'none'
       const widthValue = width
       if (!isNaN(widthValue)) {
         this.#canvas.width = widthValue
