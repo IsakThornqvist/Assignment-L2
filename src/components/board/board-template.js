@@ -56,6 +56,20 @@ template.innerHTML = `
             <label>Height</label>
             <input id='heightInput' type='number' placeholder='500'>
             <button id='heightButton'>Set</button>
+
+            <label>Canvas Color</label>
+            <div id='canvasColorPicker'>
+                    <button class='colorButton' data-color='white'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    <button class='colorButton' data-color='black'></button>
+                    
+                </div>
+
         </div>
     </div>
 </div>
@@ -163,7 +177,7 @@ template.innerHTML = `
     text-transform: uppercase;
 }
 
-#colorPicker {
+#colorPicker, #canvasColorPicker {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;

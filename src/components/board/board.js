@@ -18,6 +18,7 @@ customElements.define('my-board',
     #widthButton
     #heightButton
     #colorPicker
+    #canvasColorPicker
     #penSizePicker
     #clearCanvasButton
     #heightWidthContainer
@@ -39,6 +40,7 @@ customElements.define('my-board',
       this.#widthButton = this.shadowRoot.querySelector('#widthButton')
       this.#heightButton = this.shadowRoot.querySelector('#heightButton')
       this.#colorPicker = this.shadowRoot.querySelector('#colorPicker')
+      this.#canvasColorPicker = this.shadowRoot.querySelector('#canvasColorPicker')
       this.#penSizePicker = this.shadowRoot.querySelector('#penSizePicker')
       this.#clearCanvasButton = this.shadowRoot.querySelector('#clearCanvasButton')
       this.#heightWidthContainer = this.shadowRoot.querySelector('#heightWidthChangeContainer')
@@ -60,7 +62,8 @@ customElements.define('my-board',
       this.#setupToolButtons()
       this.#setupPenEvents()
       this.#setupSetWidthAndHeight()
-      this.#setupColorPicker()
+      this.#setupPenColorPicker()
+      this.#setupCanvasColorPicker()
       this.#setupPenSizePicker()
       this.#setupClearCanvas()
     }
@@ -104,12 +107,21 @@ customElements.define('my-board',
     /**
      * Sets up event listeners for color buttons to change the pen color.
      */
-    #setupColorPicker () {
+    #setupPenColorPicker () {
       this.#colorPicker.querySelectorAll('.colorButton').forEach(button => {
         button.addEventListener('click', () => {
           const color = button.getAttribute('data-color')
           console.log(`color selected is ${color}`)
           this.#pen.setColor(color)
+        })
+      })
+    }
+
+    #setupCanvasColorPicker () {
+      this.#canvasColorPicker.querySelectorAll('.colorButton').forEach(button => {
+        button.addEventListener('click', () => {
+          const color = button.getAttribute('data-color')
+          this.#canvas.style.backgroundColor = color
         })
       })
     }
@@ -246,6 +258,16 @@ customElements.define('my-board',
      */
     setPenColor (...colors) {
       const colorButton = this.#colorPicker.querySelectorAll('.colorButton')
+      colors.forEach((color, index) => {
+        if (colorButton[index]) {
+          colorButton[index].style.backgroundColor = color
+          colorButton[index].setAttribute('data-color', color)
+        }
+      })
+    }
+
+    setCanvasColor (...colors) {
+      const colorButton = this.#canvasColorPicker.querySelectorAll('.colorButton')
       colors.forEach((color, index) => {
         if (colorButton[index]) {
           colorButton[index].style.backgroundColor = color
