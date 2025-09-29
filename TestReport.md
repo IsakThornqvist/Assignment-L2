@@ -6,6 +6,15 @@
 | **TC2** | Unit test (jest) | √ | Checks if the custom element `my-board` has the toolbar. | Similar to **TC1**, but checks for the div with id `toolBar` instead of the canvas. |
 | **TC3** | Manual test | √ | Makes sure that the eraser clears the pixels off the canvas. | This is a manual test case that you test by following the instructions below at the **Test Specification for Manual test cases**. |
 | **TC4** | Manual test | √ | Makes sure that the user can change the size of the board via two input fields. | This is a manual test case that you can test by following the instructions below at the **Test Specification for Manual test cases** section. |
+| **TC5** | Manual test | √ | Test the pen tool draws lines on the canvas | Draw with different colors and sizes. Check if the stroke appears correctly. |
+| **TC6** | Manual test | √ | Tests changing pen color. | Click color buttons in the toolbar, draw lines, verify the stroke color matches selected color. |
+| **TC7** | Manual test | √ | Tests changing pen size. | Click size buttons in the pen controls, draw lines, verify line thickness updates accordingly. |
+| **TC8** | Manual test | √ | Tests clearing the canvas using the "Clear Canvas" button. | Draw on canvas, click "Clear Canvas", verify all content is removed. |
+| **TC9** | Manual test | √ | Tests tool switching via toolbar buttons. | Click Pen → Eraser, verify toolbar highlights the active tool and behavior matches selection. |
+| **TC10** | Manual test | √ | Tests programmatic canvas resizing using setCanvasSize. | Call **board.setCanvasSize(600,400)** in code, verify canvas width and height update correctly. |
+| **TC11** | Manual test | √ | Tests programmatic pen color changes using setPenColor. | Call board.setPenColor(...colors), verify color buttons update and drawing uses new colors. |
+| **TC12** | Manual test | √ | Tests programmatic pen size changes using setPenSize. | Call board.setPenSize(2,5,10), verify size buttons update and drawing uses correct thickness. |
+
 
 
 # What has been tested?
@@ -30,3 +39,80 @@ The first thing that I tested was the structure of the customelement **my-board*
 **Expected Results:**
 1. The pixels of the square should be removed.  
 2. No trace of the square should remain visible.
+
+### TC4 Test the size input fields
+**Use Case:** Change the size of the canvas through the input fields in the component
+
+**Scenario:** Swap size successfully
+
+**Test Steps:**
+1. At the right side of the component locate the **canvas size** section
+2. Input 600 width and 800 height
+3. Click the **set** button for both fields
+
+**Expected Results:**
+1. The canvas should now change size  
+2. The canvas should be cleared
+3. You should clearly be able to see that the height is more that the width
+
+### TC5 Test the penTool
+**Use Case:** Draw pixelson the canvas using the **penTool**
+
+**Scenario:** Paint the canvas successfully
+
+**Test Steps:**
+1. Select the **pen tool** from the toolbar.
+2. Pick any color and size and paint anything you want on the canvas.
+
+**Expected Results:**
+1. The pen should be able to draw on the canvas.
+
+### TC6 Test swapping colors
+**Use Case:** Swap the color of the **penTool**
+
+**Scenario:** Color swap worked as expected
+
+**Test Steps:**
+1. Select the **pen tool** from the toolbar.
+2. Pick a color of you choice
+3. Draw a few lines on the canvas
+4. Swap to a diffrent color in the color section of the interface
+5. Draw some more lines and verify that both set of lines are the correct and diffrent colors
+
+**Expected Results:**
+1. The penTool should be able to change colors
+
+### TC6 Test changing pen size
+**Use Case:** Change the size of the **penTool**
+
+**Scenario:** Size of the pen changes
+
+**Test Steps:**
+1. Select the **pen tool** from the toolbar.
+2. The small size in the pen size section
+3. Draw a few lines on the left canvas
+4. Swap to the medium pen size
+5. With the medium pen draw a few lines in the middle of the canvas
+6. Swap to the big pen size
+7. With the big pen draw a few lines on the right of the canvas
+
+**Expected Results:**
+1. You should see three set of lines
+2. The left most lines should be the smallest
+3. The middle lines should be bigger than the left most lines but smaller that the lines on the right
+
+### TC6 Test the Clear Canvas button
+**Use Case:** Clearing the canvas via the **Clear Canvas** button
+
+**Scenario:** Clear paint of the canvas using the Clear Canvas button
+
+**Test Steps:**
+1. Select the **pen tool** from the toolbar.
+2. Draw a circle in the middle of the canvas
+3. At the top left locate a red **Clear Canvas** button
+4. Click the button
+
+**Expected Results:**
+1. When the **Clear Canvas** button is clicked the circle you drew earlier should be removed and the entire canvas should be cleared
+
+
