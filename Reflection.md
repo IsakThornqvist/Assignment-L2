@@ -98,7 +98,7 @@ This setup is straightforward to extend — I can either add more predefined but
 | `pickColor` | Method that listens for color button clicks and updates the pen color. | **Use Solution Domain Names:** “Pick” is understandable, but could be confused with a color-picker input. Something like pickColorButtons might better reflect its purpose. |
 | `erase` | Method in the eraser tool that removes pixels from the canvas. | **Avoid Disinformation:** The name is simple and effective. However, it does not reveal that it erases a rectangular area rather than a freehand line. A more precise name could be eraseAtPosition. |
 
-## Refelction of what I learnt by reading chapter 2 
+## Reflection of what I learnt by reading chapter 2 
 
 While reading Chapter 2 of Clean Code, I gained a appreciation for the importance of meaningful names in programming. Even before reading this I always have tried to write the code in a way that is easy to understand both for myself and also for other people that may come across the code. I learned that choosing good names is not just a matter of "gold-spray" or to make things look good it directly affects how easily other developers can understand and use your code.
 
@@ -119,23 +119,24 @@ Overall, **Chapter 2** reinforced that good naming is the foundation of clean, m
 # The longest method/function
 
 ```js
-#setupSetWidthAndHeight () {
-    this.#widthButton.addEventListener('click', () => {
+    /**
+     * Adds click events to the width and height buttons to resize the canvas.
+     */
+    #setupSetWidthAndHeight () {
+      this.#widthButton.addEventListener('click', () => {
         const widthValue = this.#widthInput.value
-        if(!isNaN(widthValue)) {
-            this.#canvas.width = widthValue
-            console.log(`Width changed to ${widthValue} px`)
+        if (!isNaN(widthValue) && widthValue > 0) {
+          this.#canvas.width = widthValue
         }
-    })
+      })
 
-    this.#heightButton.addEventListener('click', () => {
+      this.#heightButton.addEventListener('click', () => {
         const heightValue = this.#heightInput.value
-        if(!isNaN(heightValue)) {
-            this.#canvas.height = heightValue
-            console.log(`Height changed to ${heightValue} px`)
+        if (!isNaN(heightValue) && heightValue > 0) {
+          this.#canvas.height = heightValue
         }
-    })
-}
+      })
+    }
 ```
 
 
@@ -168,16 +169,13 @@ This method is short, but it currently mixes concerns, it both handles the mouse
 
 
   ```js
-  /**
-  * Swaps the currently selected tool and updates the active button UI.
-  *
-  * Removes the 'active' class from all tool buttons, adds it to the clicked button,
-  * and sets the current tool to the specified tool name.
-  *
-  * @param {string} toolname - The name of the tool to activate.
-  * @param {HTMLElement} buttonClicked - The button element that was clicked.
-  */
-  #swapTool (toolname, buttonClicked) {
+    /**
+     * Switches the active tool and updates the button styles.
+     *
+     * @param {string} toolname - Tool to activate.
+     * @param {HTMLElement} buttonClicked - The button that was clicked.
+     */
+    #swapTool (toolname, buttonClicked) {
       this.shadowRoot.querySelectorAll('.toolButton').forEach(button =>
         button.classList.remove('active')
       )
@@ -198,8 +196,7 @@ The code above follows the **Use descriptive names** rule, the method **swapTool
 
   ```js
     /**
-     * Sets the pen sizes for each size button in the pen size picker.
-     * Used for the programmatic interface to change the pen sizes by calling a method.
+     * Set the pen size buttons from code.
      *
      * @param {...number} sizes - The sizes to set for the pen size buttons.
      */
@@ -218,17 +215,13 @@ The code above follows the **Use descriptive names** rule, the method **swapTool
 
   ```js
     /**
-     * Sets up event listeners for pen interactions on the canvas element.
-     * Handles mouse down, mouse up, and mouse move events to enable drawing functionality.
-     *
-     * @private
+     * Adds mouse events for drawing and erasing on the canvas.
      */
     #setupPenEvents () {
       this.#canvas.addEventListener('mousedown', e => this.#handleMouseDown(e))
       this.#canvas.addEventListener('mouseup', e => this.#handleMouseUp(e))
       this.#canvas.addEventListener('mousemove', e => this.#handleMouseMove(e))
     }
-
   ```
 
   **5. Avoid disinformation**
@@ -246,6 +239,6 @@ The most important lesson from **Chapter 2 (Naming)** was that good names elimin
 
 From **Chapter 3 (Functions)**, the "Do One Thing" principle was eye-opening. I realized that several of my methods, like `swapTool()`, were trying to do multiple things. While the code works, splitting responsibilities would make it easier to test and modify in the future.
 
-One area where I struggled was balancing abstraction with simplicity. I wanted to make the module flexible (hence methods like `setPenColor()` and `setPenSize()`), but I also needed to keep the implementation simple enough for others to understand. I think I found a reasonable balance, though there's always room for improvement.
+One area where I struggled was balancing abstraction with simplicity. I wanted to make the module flexible hence methods like `setPenColor()` and `setPenSize()`, but I also needed to keep the implementation simple enough for others to understand. I think I found a reasonable balance, though there is always room for improvement in the future.
 
-I am looking forward to making an app that uses my module. I now understand that clean code isn't about perfection it is about continuous improvement and clear communication. through the entire workflow and proccess. Every name, every function, and every abstraction is a form of documentation that helps other developers including myself to understand the intent and meaning of the code.
+I am looking forward to making an app that uses my module. I now understand that clean code is not about perfection it is about continuous improvement and clear communication through the entire workflow and proccess. Every name, every function, and every comment is a form of documentation that helps other developers including myself to understand the intent and meaning of the code.

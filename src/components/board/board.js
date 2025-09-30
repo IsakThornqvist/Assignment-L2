@@ -8,7 +8,6 @@ customElements.define('my-board',
    * Drawing board custom element.
    */
   class extends HTMLElement {
-    #myBoard
     #pen
     #eraser
     #canvas
@@ -21,8 +20,7 @@ customElements.define('my-board',
     #canvasColorPicker
     #penSizePicker
     #clearCanvasButton
-    #heightWidthContainer
-    #toolBar
+
     #penControls
 
     /**
@@ -33,7 +31,6 @@ customElements.define('my-board',
 
       this.attachShadow({ mode: 'open' })
       this.shadowRoot.appendChild(template.content.cloneNode(true))
-      this.#myBoard = this.shadowRoot.querySelector('#boardContainer')
       this.#canvas = this.shadowRoot.querySelector('#myCanvas')
       this.#heightInput = this.shadowRoot.querySelector('#heightInput')
       this.#widthInput = this.shadowRoot.querySelector('#widthInput')
@@ -43,8 +40,6 @@ customElements.define('my-board',
       this.#canvasColorPicker = this.shadowRoot.querySelector('#canvasColorPicker')
       this.#penSizePicker = this.shadowRoot.querySelector('#penSizePicker')
       this.#clearCanvasButton = this.shadowRoot.querySelector('#clearCanvasButton')
-      this.#heightWidthContainer = this.shadowRoot.querySelector('#heightWidthChangeContainer')
-      this.#toolBar = this.shadowRoot.querySelector('#toolBar')
       this.#penControls = this.shadowRoot.querySelector('#penControls')
 
       this.#pen = new PenTool(this.#canvas.getContext('2d'))
@@ -199,14 +194,14 @@ customElements.define('my-board',
     #setupSetWidthAndHeight () {
       this.#widthButton.addEventListener('click', () => {
         const widthValue = this.#widthInput.value
-        if (!isNaN(widthValue)) {
+        if (!isNaN(widthValue) && widthValue > 0) {
           this.#canvas.width = widthValue
         }
       })
 
       this.#heightButton.addEventListener('click', () => {
         const heightValue = this.#heightInput.value
-        if (!isNaN(heightValue)) {
+        if (!isNaN(heightValue) && heightValue > 0) {
           this.#canvas.height = heightValue
         }
       })

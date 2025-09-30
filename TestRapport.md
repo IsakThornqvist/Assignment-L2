@@ -15,6 +15,7 @@
 | **TC11** | Manual test | √ | Tests programmatic pen color changes using setPenColor. | Call board.setPenColor(...colors), verify color buttons update and drawing uses new colors. |
 | **TC12** | Manual test | √ | Tests programmatic pen size changes using setPenSize. | Call board.setPenSize(2,5,10), verify size buttons update and drawing uses correct thickness. |
 | **TC13** | Manual test | √ | Tests programmatic canvas color changes using setCanvasColor. | Call board.setCancasColor(...colors), and verify that you correctly can choose the set of colors that you want to be able to swap the canvas between. |
+| **TC14** | Manual test | √ | Test the height and width input fields and makes sure that the data you input and submit in the field is valid. | In the interface of the custom canvas element navigate to the height and width change section on the right of the canvas and follow the instructions bellow. |
 
 
 
@@ -205,6 +206,19 @@ The first thing that I tested was the structure of the customelement **my-board*
 1. Once only 3 colors is set the first 3 colors from the right should be white, green and blue in that order
 2. The rest of the colors should be white boxes to indicate that no color is set for them yet
 3. When clicking one of the three colors you set the canvas should swap to that color
+
+### TC14 Test input field input
+**Use Case:** You should not be able to input anyithing other than a number into the input fields
+
+**Scenario:** Strings not allowed
+
+**Test Steps:**
+1. Under the canvas size header on the right side of the compoenent you should eb able to see two input fields one for width and one for height
+2. In the width input field input hello and in the height input field input world
+3. Click the set button for both
+
+**Expected Results:**
+1. Size should not change because the input was not a number
 
 
 
