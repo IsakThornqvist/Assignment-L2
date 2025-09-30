@@ -16,15 +16,13 @@
 | **TC12** | Manual test | √ | Tests programmatic pen size changes using setPenSize. | Call board.setPenSize(2,5,10), verify size buttons update and drawing uses correct thickness. |
 | **TC13** | Manual test | √ | Tests programmatic canvas color changes using setCanvasColor. | Call board.setCancasColor(...colors), and verify that you correctly can choose the set of colors that you want to be able to swap the canvas between. |
 | **TC14** | Manual test | √ | Test the height and width input fields and makes sure that the data you input and submit in the field is valid. | In the interface of the custom canvas element navigate to the height and width change section on the right of the canvas and follow the instructions bellow. |
+| **TC15** | Unit test (jest) | √ | Checks if the custom element `my-board` has a toolBar. | Makes sure the customelement structure is correct and that the elements that are needed exist. |
+| **TC16** | Unit test (jest) | √ | Checks if the custom element `my-board` has a height and width change container. | Makes sure the customelement structure is correct and that the elements that are needed exist. |
+| **TC17** | Unit test (jest) | √ | Checks if the custom element `my-board` has the canvasColorPicker. | Makes sure the customelement structure is correct and that the elements that are needed exist. |
+| **TC18** | Unit test (jest) | √ | Checks if the custom element `my-board` has the penControls section. | Makes sure the customelement structure is correct and that the elements that are needed exist. |
+| **TC19** | Unit test (jest) | √ | Checks if the custom element `my-board` has the clear canvas button. | Makes sure the customelement structure is correct and that the elements that are needed exist. |
 
 
-
-# What has been tested?
-The first thing that I tested was the structure of the customelement **my-board**. I have unit tests that basically checks that the customelement has the correct structure. This was the first thing that I tested because I wanted to make sure that my jest and babel configration was working.
-
-# How was it tested?
-
-# Testresult
 
 ## Test Specification for Manual test cases
 
@@ -222,3 +220,19 @@ The first thing that I tested was the structure of the customelement **my-board*
 
 
 
+# What has been tested?
+The first thing that I tested was the structure of the customelement **my-board**. I have unit tests that basically checks that the customelement has the correct structure. This was the first thing that I tested because I wanted to make sure that my jest and babel configration was working.
+
+### Unit tests ###
+
+The first unit tests (TC1-TC2, TC15-TC19) helped ensure that the basic structure of the component was correct. This was important to validate before performing more functional tests. It confirmed that all required DOM elements existed and were accessible.
+
+### Manual tests ###
+Manual tests such as TC3-TC14 highlighted the importance of user interaction. Testing the pen, eraser, color picker, and size inputs gave a realistic sense of how the module would behave for end users. Some challenges included:
+
+1. Ensuring that programmatic changes like **setPenColor** correctly updated the interface.
+
+2. Verifying that invalid input for example typing text in numeric fields was properly handled.
+
+### Improvements and overall learning ###
+Testing the **my-board** custom element provided important and valuable insights into both component design and user interaction with the module. Unit tests confirmed the structure and existence of all necessary elements, while manual tests allowed verification of the actual functionality, such as drawing, erasing, and programmatic changes to pen and canvas properties and attributes. This process highlighted the importance of input validation, correct and smooth UI behavior, and exposing clear methods for programmatic control for any uses rof the module. Overall, the project reinforced best practices for developing robust web components and combining automated and manual testing to ensure reliability and usability. I do feel like I could have made more use of the unit tests, for this project I mostly used the unit tests as a way to make sure that the structure of the customelement is correct. I do feel like some more unit tests like a input check for the input fields or something like that could have been a good idea.

@@ -28,3 +28,59 @@ describe('Board component', () => {
     expect(toolBar).not.toBeNull()
   })
 })
+
+beforeAll(() => {
+  HTMLCanvasElement.prototype.getContext = jest.fn(() => ({}))
+})
+
+describe('Board component', () => {
+  test('my-board component should contain a heightWidthChangeContainer', () => {
+    document.body.innerHTML = '<my-board></my-board>'
+    const myBoard = document.querySelector('my-board')
+    const shadowRoot = myBoard.shadowRoot
+    const toolBar = shadowRoot.querySelector('#heightWidthChangeContainer')
+    expect(toolBar).not.toBeNull()
+  })
+})
+
+beforeAll(() => {
+  HTMLCanvasElement.prototype.getContext = jest.fn(() => ({}))
+})
+
+describe('Board component', () => {
+  test('my-board component should contain a canvasColorPicker', () => {
+    document.body.innerHTML = '<my-board></my-board>'
+    const myBoard = document.querySelector('my-board')
+    const shadowRoot = myBoard.shadowRoot
+    const toolBar = shadowRoot.querySelector('#canvasColorPicker')
+    expect(toolBar).not.toBeNull()
+  })
+})
+
+beforeAll(() => {
+  HTMLCanvasElement.prototype.getContext = jest.fn(() => ({}))
+})
+
+describe('Board component', () => {
+  test('my-board component should contain penControls', () => {
+    document.body.innerHTML = '<my-board></my-board>'
+    const myBoard = document.querySelector('my-board')
+    const shadowRoot = myBoard.shadowRoot
+    const toolBar = shadowRoot.querySelector('#penControls')
+    expect(toolBar).not.toBeNull()
+  })
+})
+
+beforeAll(() => {
+  HTMLCanvasElement.prototype.getContext = jest.fn(() => ({}))
+})
+
+describe('Board component', () => {
+  test('my-board component should contain a clearCanvasButton', () => {
+    document.body.innerHTML = '<my-board></my-board>'
+    const myBoard = document.querySelector('my-board')
+    const shadowRoot = myBoard.shadowRoot
+    const toolBar = shadowRoot.querySelector('#clearCanvasButton')
+    expect(toolBar).not.toBeNull()
+  })
+})
