@@ -2,6 +2,8 @@
 
 A customizable web component for creating an interactive drawing canvas in your web applications. Built with vanilla JavaScript and Web Components, this module provides a complete drawing experience with pen tools, erasers, and extensive customization options.
 
+![Demo](demo/demo.mp4)
+
 ## Features
 
 - **Drawing Tools**: Freehand pen tool with customizable colors and sizes
