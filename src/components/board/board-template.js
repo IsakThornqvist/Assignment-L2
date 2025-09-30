@@ -75,6 +75,9 @@ template.innerHTML = `
 </div>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+
 .hidden {
     display: none;
 }
@@ -83,6 +86,7 @@ template.innerHTML = `
     background: white;
     padding: 24px;
     border-radius: 12px;
+    font-family: 'Inter', sans-serif;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     max-width: 1400px;
     margin: 20px auto;
@@ -212,9 +216,14 @@ template.innerHTML = `
     cursor: pointer;
 }
 
+.sizeButton.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
 .sizeButton:hover {
     border-color: #3b82f6;
-    background: #eff6ff;
 }
 
 #canvasContainer {

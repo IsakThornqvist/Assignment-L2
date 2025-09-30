@@ -11,6 +11,7 @@ export class EraseTool {
     this.isErasing = false
     this.canvasContext = canvasContext
     this.color = 'white'
+    this.size = 40
   }
 
   /**
@@ -25,7 +26,6 @@ export class EraseTool {
 
     this.canvasContext.beginPath()
     this.canvasContext.moveTo(offsetX, offsetY)
-    console.log('Eraser clicked down')
   }
 
   /**
@@ -46,7 +46,6 @@ export class EraseTool {
       this.isErasing = false
 
       this.canvasContext.beginPath()
-      console.log('Eraser up')
     }
   }
 
@@ -57,7 +56,7 @@ export class EraseTool {
    */
   erase (event) {
     const { offsetX, offsetY } = event
-    const size = 20
+    const size = this.size
     this.canvasContext.clearRect(offsetX - size / 2, offsetY - size / 2, size, size)
   }
 }

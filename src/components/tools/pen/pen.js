@@ -26,7 +26,6 @@ export class PenTool {
     // Lift the pen
     this.canvasContext.beginPath()
     this.canvasContext.moveTo(offsetX, offsetY)
-    console.log('Pen clicked down')
   }
 
   /**
@@ -49,7 +48,6 @@ export class PenTool {
 
       // Start fresh so that the next dwaring doesn't connect
       this.canvasContext.beginPath()
-      console.log('Pen up')
     }
   }
 

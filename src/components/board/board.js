@@ -69,7 +69,6 @@ customElements.define('my-board',
      */
     #setupClearCanvas () {
       this.#clearCanvasButton.addEventListener('click', () => {
-        console.log('canvas cleared')
         const canvasContext = this.#canvas.getContext('2d')
         canvasContext.clearRect(0, 0, this.#canvas.width, this.#canvas.height)
       })
@@ -102,7 +101,6 @@ customElements.define('my-board',
       this.#colorPicker.querySelectorAll('.colorButton').forEach(button => {
         button.addEventListener('click', () => {
           const color = button.getAttribute('data-color')
-          console.log(`color selected is ${color}`)
           this.#pen.setColor(color)
         })
       })
@@ -127,7 +125,10 @@ customElements.define('my-board',
       this.#penSizePicker.querySelectorAll('.sizeButton').forEach(button => {
         button.addEventListener('click', () => {
           const size = parseInt(button.getAttribute('data-size'), 10)
-          console.log(`size selected is ${size}`)
+          this.#penSizePicker.querySelectorAll('.sizeButton').forEach(button =>
+            button.classList.remove('active')
+          )
+          button.classList.add('active')
           this.#pen.setSize(size)
         })
       })
@@ -200,7 +201,6 @@ customElements.define('my-board',
         const widthValue = this.#widthInput.value
         if (!isNaN(widthValue)) {
           this.#canvas.width = widthValue
-          console.log(`Width changed to ${widthValue} px`)
         }
       })
 
@@ -208,7 +208,6 @@ customElements.define('my-board',
         const heightValue = this.#heightInput.value
         if (!isNaN(heightValue)) {
           this.#canvas.height = heightValue
-          console.log(`Height changed to ${heightValue} px`)
         }
       })
     }
@@ -225,13 +224,11 @@ customElements.define('my-board',
       const widthValue = width
       if (!isNaN(widthValue)) {
         this.#canvas.width = widthValue
-        console.log(`Width changed via interface to ${width}`)
       }
 
       const heightValue = height
       if (!isNaN(heightValue)) {
         this.#canvas.height = heightValue
-        console.log(`Height changed via interface to ${height}`)
       }
     }
 
