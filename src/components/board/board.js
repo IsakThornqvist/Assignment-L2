@@ -5,7 +5,7 @@ import { template } from './board-template.js'
 customElements.define('my-board',
 
   /**
-   * Custom element class for the drawing board component.
+   * Drawing board custom element.
    */
   class extends HTMLElement {
     #myBoard
@@ -26,7 +26,7 @@ customElements.define('my-board',
     #penControls
 
     /**
-     * Initializes the board component, sets up shadow DOM, and prepares tool and canvas references.
+     * Sets up the board, shadow DOM, and grabs all the needed elements.
      */
     constructor () {
       super()
@@ -52,13 +52,9 @@ customElements.define('my-board',
     }
 
     /**
-     * Called when the custom element is added to the DOM.
-     * Initializes the board by setting up tool buttons and pen event listeners.
-     * Logs a message to the console when the board is added.
+     * Runs setup when the element is added to the page.
      */
     connectedCallback () {
-      console.log('my-board added')
-
       this.#setupToolButtons()
       this.#setupPenEvents()
       this.#setupSetWidthAndHeight()
@@ -69,21 +65,18 @@ customElements.define('my-board',
     }
 
     /**
-     * Sets up the event listener for the clear canvas button to clear the canvas when clicked.
+     * Adds a click event to the clear button to wipe the canvas.
      */
     #setupClearCanvas () {
       this.#clearCanvasButton.addEventListener('click', () => {
         console.log('canvas cleared')
-        const context = this.#canvas.getContext('2d')
-        context.clearRect(0, 0, this.#canvas.width, this.#canvas.height)
+        const canvasContext = this.#canvas.getContext('2d')
+        canvasContext.clearRect(0, 0, this.#canvas.width, this.#canvas.height)
       })
     }
 
     /**
-     * Sets up event listeners for pen interactions on the canvas element.
-     * Handles mouse down, mouse up, and mouse move events to enable drawing functionality.
-     *
-     * @private
+     * Adds mouse events for drawing and erasing on the canvas.
      */
     #setupPenEvents () {
       this.#canvas.addEventListener('mousedown', e => this.#handleMouseDown(e))
@@ -92,9 +85,7 @@ customElements.define('my-board',
     }
 
     /**
-     * Sets up click event listeners for all elements with the 'toolButton' class
-     * within the component's shadow DOM. When a button is clicked, it calls
-     * the swapTool method with the tool type and button element.
+     * Adds click events to all tool buttons so you can switch tools.
      */
     #setupToolButtons () {
       this.shadowRoot.querySelectorAll('.toolButton').forEach(button => {
@@ -105,7 +96,7 @@ customElements.define('my-board',
     }
 
     /**
-     * Sets up event listeners for color buttons to change the pen color.
+     * Adds click events to color buttons to change pen color.
      */
     #setupPenColorPicker () {
       this.#colorPicker.querySelectorAll('.colorButton').forEach(button => {
@@ -117,6 +108,9 @@ customElements.define('my-board',
       })
     }
 
+    /**
+     * Adds click events to canvas color buttons to change the canvas background.
+     */
     #setupCanvasColorPicker () {
       this.#canvasColorPicker.querySelectorAll('.colorButton').forEach(button => {
         button.addEventListener('click', () => {
@@ -127,7 +121,7 @@ customElements.define('my-board',
     }
 
     /**
-     * Sets up event listeners for pen size buttons to change the pen size.
+     * Adds click events to pen size buttons to change pen size.
      */
     #setupPenSizePicker () {
       this.#penSizePicker.querySelectorAll('.sizeButton').forEach(button => {
@@ -140,13 +134,10 @@ customElements.define('my-board',
     }
 
     /**
-     * Swaps the currently selected tool and updates the active button UI.
+     * Switches the active tool and updates the button styles.
      *
-     * Removes the 'active' class from all tool buttons, adds it to the clicked button,
-     * and sets the current tool to the specified tool name.
-     *
-     * @param {string} toolname - The name of the tool to activate.
-     * @param {HTMLElement} buttonClicked - The button element that was clicked.
+     * @param {string} toolname - Tool to activate.
+     * @param {HTMLElement} buttonClicked - The button that was clicked.
      */
     #swapTool (toolname, buttonClicked) {
       this.shadowRoot.querySelectorAll('.toolButton').forEach(button =>
@@ -163,8 +154,7 @@ customElements.define('my-board',
     }
 
     /**
-     * Handles the mouse up event on the canvas element.
-     * Adds an event listener for the 'mouseup' event and delegates the event to the pen tool if it is currently selected.
+     * Handles mouse up on the canvas and calls the right tool's method.
      *
      * @param {MouseEvent} e - The mouse up event object.
      */
@@ -177,9 +167,7 @@ customElements.define('my-board',
     }
 
     /**
-     * Attaches a 'mousedown' event listener to the canvas element.
-     * When the event is triggered and the current tool is 'pen',
-     * delegates the event handling to the pen tool's handleMouseDown method.
+     * Handles mouse down on the canvas and calls the right tool's method.
      *
      * @param {MouseEvent} e - The mouse down event object.
      */
@@ -192,8 +180,7 @@ customElements.define('my-board',
     }
 
     /**
-     * Attaches a mousemove event listener to the canvas element.
-     * When the current tool is set to 'pen', delegates the mousemove event to the pen tool's handler.
+     * Handles mouse move on the canvas and calls the right tool's method.
      *
      * @param {MouseEvent} e - The mousemove event object.
      */
@@ -206,7 +193,7 @@ customElements.define('my-board',
     }
 
     /**
-     * Sets up event listeners for width and height buttons to update the canvas size.
+     * Adds click events to the width and height buttons to resize the canvas.
      */
     #setupSetWidthAndHeight () {
       this.#widthButton.addEventListener('click', () => {
@@ -229,9 +216,7 @@ customElements.define('my-board',
     // Methods that you can call in index.js to change the board
 
     /**
-     * Sets the canvas size programmatically and hides the width/height input container.
-     *
-     * Hides the input fields and buttons for changing the height
+     * Change the canvas size from code and hide the input fields.
      *
      * @param {number} width - The new width for the canvas.
      * @param {number} height - The new height for the canvas.
@@ -251,10 +236,9 @@ customElements.define('my-board',
     }
 
     /**
-     * Sets the background color and data-color attribute for each color button in the color picker.
-     * Used for the programmatic interface to change the colors through calling a method.
+     * Set the pen color buttons and their data-color attribute from code.
      *
-     * @param {...string} colors - The colors to set for the color buttons via the setColorsThroughMethodCall.
+     * @param {...string} colors - The colors to set for the color buttons.
      */
     setPenColor (...colors) {
       const colorButton = this.#colorPicker.querySelectorAll('.colorButton')
@@ -266,6 +250,11 @@ customElements.define('my-board',
       })
     }
 
+    /**
+     * Set the canvas color buttons and their data-color attribute from code.
+     *
+     * @param {...string} colors - The colors to set for the canvas color buttons.
+     */
     setCanvasColor (...colors) {
       const colorButton = this.#canvasColorPicker.querySelectorAll('.colorButton')
       colors.forEach((color, index) => {
@@ -277,8 +266,7 @@ customElements.define('my-board',
     }
 
     /**
-     * Sets the pen sizes for each size button in the pen size picker.
-     * Used for the programmatic interface to change the pen sizes by calling a method.
+     * Set the pen size buttons from code.
      *
      * @param {...number} sizes - The sizes to set for the pen size buttons.
      */
