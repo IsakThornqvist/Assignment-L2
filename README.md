@@ -229,10 +229,10 @@ This module is licensed under the **MIT License**. You are free to use, modify, 
 
 ## Installation
 
- 1. git clone https://github.com/IsakThornqvist/Assignment-L2.git
+ 1. Run git clone https://github.com/IsakThornqvist/Assignment-L2.git in the terminal
 
  2. Run cd Assignment-L2 in the terminal
  
- 3. Run npm install i the terminal
+ 3. Run npm install in the terminal
 
  4. Run npm run dev in the terminal and open the project in the browser
