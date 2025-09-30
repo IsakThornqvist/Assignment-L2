@@ -14,6 +14,7 @@
 | **TC10** | Manual test | √ | Tests programmatic canvas resizing using setCanvasSize. | Call **board.setCanvasSize(600,400)** in code, verify canvas width and height update correctly. |
 | **TC11** | Manual test | √ | Tests programmatic pen color changes using setPenColor. | Call board.setPenColor(...colors), verify color buttons update and drawing uses new colors. |
 | **TC12** | Manual test | √ | Tests programmatic pen size changes using setPenSize. | Call board.setPenSize(2,5,10), verify size buttons update and drawing uses correct thickness. |
+| **TC13** | Manual test | √ | Tests programmatic canvas color changes using setCanvasColor. | Call board.setCancasColor(...colors), and verify that you correctly can choose the set of colors that you want to be able to swap the canvas between. |
 
 
 
@@ -184,5 +185,26 @@ The first thing that I tested was the structure of the customelement **my-board*
 **Expected Results:**
 1. Size buttons reflect the new values.
 2. Drawing uses the correct thickness for each size.
+
+### TC13 Test programmatic canvas color changes
+**Use Case:** Change canvas colors via `setCanvasColor`
+
+**Scenario:** Color choices for the canvas are updated programmatically
+
+**Test Steps:**
+1. Call in the index.js or console:
+   ```js
+   board.setCanvasColor('white', 'green', 'blue')
+   ```
+
+2. Click the green button on the right of the canvas under the **canvas color** label and make sure the canvas changes to green
+3. Click the blue followed by the white canvas button and observe the color changing
+
+
+**Expected Results:**
+1. Once only 3 colors is set the first 3 colors from the right should be white, green and blue in that order
+2. The rest of the colors should be white boxes to indicate that no color is set for them yet
+3. When clicking one of the three colors you set the canvas should swap to that color
+
 
 
