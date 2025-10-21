@@ -4,6 +4,7 @@ template.innerHTML = `
 <div id='boardContainer'>
     <div id='header'>
         <h1>The Board</h1>
+        <slot name="headerPanel"></slot>
         <button id='clearCanvasButton'>Clear Canvas</button>
     </div>
 
@@ -13,7 +14,6 @@ template.innerHTML = `
             <button class='toolButton active' data-tool='none'>None</button>
             <button class='toolButton' data-tool='pen'>Pen</button>
             <button class='toolButton' data-tool='eraser'>Eraser</button>
-<!--             <button class='toolButton' data-tool='shapes'>Shapes</button> -->
 
             <div id='penControls' class='hidden'>
                 <h3>Pen Settings</h3>
@@ -56,6 +56,9 @@ template.innerHTML = `
             <label>Height</label>
             <input id='heightInput' type='number' placeholder='500'>
             <button id='heightButton'>Set</button>
+
+                        <slot name="rightOfCanvas"></slot>
+            <slot name="rightOfCanvasTwo"></slot>
 
             <label>Canvas Color</label>
             <div id='canvasColorPicker'>

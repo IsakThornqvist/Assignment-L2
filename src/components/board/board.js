@@ -20,7 +20,6 @@ customElements.define('my-board',
     #canvasColorPicker
     #penSizePicker
     #clearCanvasButton
-
     #penControls
 
     /**
@@ -57,6 +56,78 @@ customElements.define('my-board',
       this.#setupCanvasColorPicker()
       this.#setupPenSizePicker()
       this.#setupClearCanvas()
+    }
+
+    // Methods that you can call in index.js to change the board
+
+    /**
+     * Change the canvas size from code and hide the input fields.
+     *
+     * @param {number} width - The new width for the canvas.
+     * @param {number} height - The new height for the canvas.
+     */
+    setCanvasSize (width, height) {
+      const widthValue = width
+      if (!isNaN(widthValue)) {
+        this.#canvas.width = widthValue
+      }
+
+      const heightValue = height
+      if (!isNaN(heightValue)) {
+        this.#canvas.height = heightValue
+      }
+    }
+
+    /**
+     * Set the pen color buttons and their data-color attribute from code.
+     *
+     * @param {...string} colors - The colors to set for the color buttons.
+     */
+    setPenColor (...colors) {
+      const colorButton = this.#colorPicker.querySelectorAll('.colorButton')
+      colors.forEach((color, index) => {
+        if (colorButton[index]) {
+          colorButton[index].style.backgroundColor = color
+          colorButton[index].setAttribute('data-color', color)
+        }
+      })
+    }
+
+    /**
+     * Set the canvas color buttons and their data-color attribute from code.
+     *
+     * @param {...string} colors - The colors to set for the canvas color buttons.
+     */
+    setCanvasColor (...colors) {
+      const colorButton = this.#canvasColorPicker.querySelectorAll('.colorButton')
+      colors.forEach((color, index) => {
+        if (colorButton[index]) {
+          colorButton[index].style.backgroundColor = color
+          colorButton[index].setAttribute('data-color', color)
+        }
+      })
+    }
+
+    /**
+     * Set the pen size buttons from code.
+     *
+     * @param {...number} sizes - The sizes to set for the pen size buttons.
+     */
+    setPenSize (...sizes) {
+      const penSizeButton = this.#penSizePicker.querySelectorAll('.sizeButton')
+      sizes.forEach((size, index) => {
+        if (penSizeButton[index]) {
+          penSizeButton[index].setAttribute('data-size', size)
+        }
+      })
+    }
+
+    /**
+     * Clears the canvas.
+     */
+    clearCanvas () {
+      const canvasContext = this.#canvas.getContext('2d')
+      canvasContext.clearRect(0, 0, this.#canvas.width, this.#canvas.height)
     }
 
     /**
@@ -203,70 +274,6 @@ customElements.define('my-board',
         const heightValue = this.#heightInput.value
         if (!isNaN(heightValue) && heightValue > 0) {
           this.#canvas.height = heightValue
-        }
-      })
-    }
-
-    // Methods that you can call in index.js to change the board
-
-    /**
-     * Change the canvas size from code and hide the input fields.
-     *
-     * @param {number} width - The new width for the canvas.
-     * @param {number} height - The new height for the canvas.
-     */
-    setCanvasSize (width, height) {
-      const widthValue = width
-      if (!isNaN(widthValue)) {
-        this.#canvas.width = widthValue
-      }
-
-      const heightValue = height
-      if (!isNaN(heightValue)) {
-        this.#canvas.height = heightValue
-      }
-    }
-
-    /**
-     * Set the pen color buttons and their data-color attribute from code.
-     *
-     * @param {...string} colors - The colors to set for the color buttons.
-     */
-    setPenColor (...colors) {
-      const colorButton = this.#colorPicker.querySelectorAll('.colorButton')
-      colors.forEach((color, index) => {
-        if (colorButton[index]) {
-          colorButton[index].style.backgroundColor = color
-          colorButton[index].setAttribute('data-color', color)
-        }
-      })
-    }
-
-    /**
-     * Set the canvas color buttons and their data-color attribute from code.
-     *
-     * @param {...string} colors - The colors to set for the canvas color buttons.
-     */
-    setCanvasColor (...colors) {
-      const colorButton = this.#canvasColorPicker.querySelectorAll('.colorButton')
-      colors.forEach((color, index) => {
-        if (colorButton[index]) {
-          colorButton[index].style.backgroundColor = color
-          colorButton[index].setAttribute('data-color', color)
-        }
-      })
-    }
-
-    /**
-     * Set the pen size buttons from code.
-     *
-     * @param {...number} sizes - The sizes to set for the pen size buttons.
-     */
-    setPenSize (...sizes) {
-      const penSizeButton = this.#penSizePicker.querySelectorAll('.sizeButton')
-      sizes.forEach((size, index) => {
-        if (penSizeButton[index]) {
-          penSizeButton[index].setAttribute('data-size', size)
         }
       })
     }
